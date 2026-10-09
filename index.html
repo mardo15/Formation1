@@ -1,0 +1,1211 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                body {
+                  background-color: white; /* Ensure the iframe has a white background */
+                }
+
+                
+              </style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation Business Digital</title>
+<meta name="description" content="Plateforme de formation en ligne premium">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23C9A24B' width='100' height='100' rx='20'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='serif' font-weight='bold'>F</text></svg>">
+<link href="https://cdn.jsdelivr.net/fontsource/fonts/plus-jakarta-sans@latest/latin-400-normal.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/fontsource/fonts/plus-jakarta-sans@latest/latin-600-normal.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/fontsource/fonts/plus-jakarta-sans@latest/latin-700-normal.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/fontsource/fonts/playfair-display@latest/latin-700-normal.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--cream:#FBF7F0;--cream-2:#F5EFE3;--gold:#C9A24B;--gold-2:#B8892F;--gold-light:#E8D5A0;--gold-soft:#F3E7C4;--white:#FFF;--ink:#1C1A16;--ink-2:#3A3630;--muted:#6B6458;--line:#E8DFC9;--wa:#25D366;--pending:#F59E0B;--active:#10B981;--rejected:#EF4444;--shadow:0 10px 30px rgba(60,45,10,.08);--shadow-lg:0 20px 60px rgba(60,45,10,.12);--radius:16px;--radius-lg:24px;--grad-gold:linear-gradient(135deg,#E8D5A0 0%,#C9A24B 50%,#B8892F 100%);--grad-cream:linear-gradient(135deg,#FBF7F0 0%,#F5EFE3 100%)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;overflow-x:hidden;min-height:100vh}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.2;color:var(--ink)}
+h1{font-size:clamp(2rem,5vw,3.8rem)}h2{font-size:clamp(1.8rem,4vw,2.8rem)}h3{font-size:clamp(1.3rem,2.5vw,1.6rem)}
+p{color:var(--ink-2)}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+.container{max-width:1280px;margin:0 auto;padding:0 24px}
+section{padding:80px 0;position:relative}
+@media(max-width:768px){section{padding:60px 0}}
+.topbar{background:var(--ink);color:var(--gold-light);overflow:hidden;padding:10px 0;font-size:13px;letter-spacing:2px;font-weight:500}
+.topbar-track{display:flex;gap:60px;white-space:nowrap;animation:scroll 35s linear infinite;width:max-content}
+.topbar-track span{display:inline-flex;align-items:center;gap:12px}
+.topbar-track i{color:var(--gold);font-size:8px}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.header{position:sticky;top:0;z-index:100;background:rgba(251,247,240,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1280px;margin:0 auto;gap:20px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:16px;cursor:pointer}
+.logo-mark{width:42px;height:42px;border-radius:12px;background:var(--grad-gold);display:grid;place-items:center;color:#fff;font-family:'Playfair Display',serif;font-weight:700;font-size:20px;box-shadow:0 6px 16px rgba(201,162,75,.35);flex-shrink:0}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-text small{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-2);cursor:pointer}
+.nav-links a:hover{color:var(--gold-2)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:600;font-size:14px;transition:all .3s;cursor:pointer;white-space:nowrap}
+.btn-primary{background:var(--grad-gold);color:#fff;box-shadow:0 8px 20px rgba(201,162,75,.3)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-outline{border:1.5px solid var(--ink);color:var(--ink);background:transparent}
+.btn-outline:hover{background:var(--ink);color:var(--cream)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{background:#1ea855}
+.btn-success{background:var(--active);color:#fff}
+.btn-success:hover{background:#059669}
+.btn-danger{background:var(--rejected);color:#fff}
+.btn-danger:hover{background:#DC2626}
+.btn-lg{padding:16px 32px;font-size:15px}
+.btn-sm{padding:9px 16px;font-size:12.5px}
+.header-actions{display:flex;gap:10px;align-items:center}
+.burger{display:none;width:42px;height:42px;border-radius:12px;background:var(--cream-2);align-items:center;justify-content:center}
+@media(max-width:1100px){.nav-links{display:none}}
+@media(max-width:640px){.header-actions .btn-outline{display:none}.burger{display:flex}.logo-text span{font-size:13px}}
+.mobile-menu{position:fixed;inset:0;z-index:200;background:var(--cream);padding:24px;transform:translateX(100%);transition:transform .4s;overflow-y:auto}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.mobile-menu ul a{display:block;padding:16px 20px;border-radius:14px;font-size:17px;font-weight:500;cursor:pointer}
+.mobile-menu .btn{width:100%;justify-content:center;margin-top:12px}
+.hero{padding:60px 0 80px;background:radial-gradient(circle at 15% 20%,rgba(232,213,160,.5),transparent 50%),radial-gradient(circle at 85% 80%,rgba(201,162,75,.15),transparent 50%),var(--grad-cream)}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--gold-light);font-size:13px;font-weight:600;color:var(--gold-2);margin-bottom:24px}
+.hero h1{margin-bottom:20px}
+.hero h1 .gold{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic}
+.hero-sub{font-size:17px;color:var(--muted);margin-bottom:32px;max-width:540px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap}
+.hero-stat strong{display:block;font-family:'Playfair Display',serif;font-size:28px;line-height:1}
+.hero-stat span{font-size:13px;color:var(--muted);margin-top:4px}
+.section-head{text-align:center;max-width:720px;margin:0 auto 56px}
+.section-tag{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--gold-soft);color:var(--gold-2);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.section-head h2{margin-bottom:14px}
+.section-head p{color:var(--muted);font-size:16px}
+.formations{background:var(--cream)}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:30px}
+@media(max-width:480px){.form-grid{grid-template-columns:1fr}}
+.form-card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);transition:all .4s;display:flex;flex-direction:column}
+.form-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--gold-light)}
+.form-img{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--gold-soft)}
+.form-img img{width:100%;height:100%;object-fit:cover}
+.form-num{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.95);padding:7px 14px;border-radius:999px;font-size:12px;font-weight:700;color:var(--gold-2);letter-spacing:1.5px;z-index:2}
+.form-cat{position:absolute;top:16px;right:16px;background:var(--ink);color:var(--gold-light);padding:7px 14px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:1.5px;z-index:2}
+.form-body{padding:26px;flex:1;display:flex;flex-direction:column}
+.form-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:700;line-height:1.35;margin-bottom:12px}
+.form-desc{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:22px;flex:1}
+.form-meta{display:flex;gap:16px;margin-bottom:20px;padding:14px 16px;border-radius:12px;background:var(--cream);border:1px solid var(--line);font-size:12.5px;flex-wrap:wrap}
+.form-meta div{display:flex;align-items:center;gap:6px}
+.form-meta i{color:var(--gold)}
+.form-foot{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--line);gap:12px;flex-wrap:wrap}
+.form-price-amount{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;line-height:1}
+.form-price-label{font-size:10.5px;color:var(--muted);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
+.form-actions{display:flex;gap:8px}
+.btn-enroll{padding:11px 20px;border-radius:999px;background:var(--grad-gold);color:#fff;font-size:12.5px;font-weight:700}
+.btn-login{padding:11px 16px;border-radius:999px;background:var(--cream);color:var(--ink);font-size:12.5px;font-weight:600;border:1px solid var(--line)}
+.btn-login:hover{background:var(--ink);color:var(--gold-light)}
+.support-cta{background:var(--ink);color:var(--cream);border-radius:var(--radius-lg);padding:60px 40px;text-align:center;margin:40px auto;max-width:1200px}
+.support-cta h2{color:var(--cream);margin-bottom:14px}
+.support-cta p{color:var(--gold-light);margin-bottom:28px;max-width:520px;margin:0 auto 28px}
+.support-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-cream{background:var(--cream);color:var(--ink)}
+.btn-cream:hover{background:var(--gold-light)}
+.footer{background:var(--ink);color:var(--cream);padding:70px 0 30px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px}
+@media(max-width:800px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand p{color:rgba(251,247,240,.6);font-size:14px;margin:16px 0 20px;max-width:320px}
+.footer h4{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer ul a{color:rgba(251,247,240,.7);font-size:14px;cursor:pointer}
+.footer-bottom{border-top:1px solid rgba(251,247,240,.1);padding-top:24px;text-align:center;font-size:13px;color:rgba(251,247,240,.5)}
+.float-support{position:fixed;bottom:24px;right:24px;z-index:90;width:60px;height:60px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;font-size:26px;box-shadow:0 10px 30px rgba(37,211,102,.4)}
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(28,26,22,.6);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--cream);border-radius:var(--radius-lg);max-width:600px;width:100%;max-height:90vh;overflow-y:auto;padding:36px;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:var(--cream-2);display:grid;place-items:center;color:var(--ink);cursor:pointer}
+.modal h2{font-size:26px;margin-bottom:8px}
+.modal .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 16px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-family:inherit;font-size:14.5px}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.modal .btn{width:100%;justify-content:center;margin-top:8px}
+.alert{padding:12px 16px;border-radius:12px;font-size:13.5px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.alert-ok{background:#E8F5E9;color:#2E7D32;border:1px solid #A5D6A7}
+.alert-err{background:#FFEBEE;color:#C62828;border:1px solid #EF9A9A}
+.alert-warn{background:#FFF8E1;color:#F57C00;border:1px solid #FFE082}
+.alert-info{background:var(--gold-soft);color:var(--gold-2);border:1px solid var(--gold-light)}
+.page{display:none}
+.page.active{display:block}
+.dash{padding:40px 0 80px;background:var(--cream);min-height:100vh}
+.dash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:16px}
+.dash-head h1{font-size:clamp(1.5rem,3vw,2.2rem)}
+.dash-head h1 span{color:var(--gold-2)}
+.dash-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-bottom:32px}
+.dash-stat{background:#fff;border-radius:var(--radius);padding:22px;border:1px solid var(--line);position:relative;overflow:hidden}
+.dash-stat::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--grad-gold)}
+.dash-stat i{width:42px;height:42px;border-radius:12px;background:var(--gold-soft);color:var(--gold-2);display:grid;place-items:center;font-size:18px;margin-bottom:14px}
+.dash-stat strong{display:block;font-family:'Playfair Display',serif;font-size:28px;line-height:1}
+.dash-stat span{font-size:13px;color:var(--muted);margin-top:4px;display:block}
+.dash-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+@media(max-width:900px){.dash-grid{grid-template-columns:1fr}}
+.dash-card{background:#fff;border-radius:var(--radius-lg);padding:28px;border:1px solid var(--line)}
+.dash-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;margin-bottom:20px}
+.progress{height:10px;background:var(--cream-2);border-radius:999px;overflow:hidden;margin:14px 0 8px}
+.progress-bar{height:100%;background:var(--grad-gold);border-radius:999px;transition:width 1s}
+.progress-text{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.admin{padding:30px 0 80px;background:var(--cream);min-height:100vh}
+.admin-card{background:#fff;border-radius:var(--radius-lg);padding:32px;border:1px solid var(--line);margin-bottom:24px}
+.admin-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.admin-card h3 i{color:var(--gold)}
+.admin-tabs{display:flex;gap:8px;margin-bottom:24px;overflow-x:auto;flex-wrap:wrap;padding-bottom:4px}
+.admin-tab{padding:10px 18px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13.5px;font-weight:600;color:var(--ink-2);white-space:nowrap;cursor:pointer;transition:all .2s}
+.admin-tab.active{background:var(--ink);color:var(--gold-light);border-color:var(--ink)}
+.admin-tab:hover:not(.active){background:var(--cream-2)}
+.admin-panel{display:none}
+.admin-panel.active{display:block}
+.student-table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line)}
+.student-table th{background:var(--cream-2);padding:14px 12px;text-align:left;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.student-table td{padding:14px 12px;border-top:1px solid var(--line);font-size:13.5px;vertical-align:middle}
+.student-table tr:hover{background:var(--cream)}
+.table-actions{display:flex;gap:6px;flex-wrap:wrap}
+.icon-btn{width:36px;height:36px;border-radius:10px;background:var(--cream-2);display:inline-grid;place-items:center;color:var(--ink-2);cursor:pointer;transition:all .2s}
+.icon-btn:hover{background:var(--gold);color:#fff}
+.icon-btn.danger:hover{background:var(--rejected);color:#fff}
+.icon-btn.success:hover{background:var(--active);color:#fff}
+.icon-btn.wa:hover{background:var(--wa)}
+.empty-state{text-align:center;padding:40px 20px;color:var(--muted)}
+.empty-state i{font-size:48px;margin-bottom:16px;opacity:.3;display:block}
+.empty-state p{font-size:14px}
+.toast{position:fixed;top:90px;right:24px;z-index:600;background:#fff;border-radius:14px;padding:14px 20px;box-shadow:var(--shadow-lg);border:1px solid var(--line);display:flex;align-items:center;gap:12px;transform:translateX(400px);transition:transform .4s;max-width:340px}
+.toast.show{transform:translateX(0)}
+.toast i{color:var(--gold);font-size:20px}
+.toast strong{display:block;font-size:14px}
+.toast span{font-size:12.5px;color:var(--muted)}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.badge-pending{background:#FEF3C7;color:#92400E;border:1px solid #FCD34D}
+.badge-active{background:#D1FAE5;color:#065F46;border:1px solid #6EE7B7}
+.badge-rejected{background:#FEE2E2;color:#991B1B;border:1px solid #FCA5A5}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px}
+.stat-mini{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.stat-mini strong{display:block;font-family:'Playfair Display',serif;font-size:24px;color:var(--gold-2);line-height:1}
+.stat-mini span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px;display:block}
+.chart-bar{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.chart-bar-label{flex:0 0 140px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.chart-bar-track{flex:1;height:24px;background:var(--cream-2);border-radius:999px;overflow:hidden}
+.chart-bar-fill{height:100%;background:var(--grad-gold);border-radius:999px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-size:11px;font-weight:700;color:#fff;min-width:30px}
+.chart-bar-count{flex:0 0 60px;text-align:right;font-size:13px;font-weight:700;color:var(--ink)}
+.detail-header{background:var(--grad-soft);border-radius:16px;padding:24px;margin-bottom:20px;border:1px solid var(--line)}
+.detail-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.detail-row:last-child{border-bottom:none}
+.detail-row strong{color:var(--muted);font-weight:500}
+.detail-row span{font-weight:600;color:var(--ink)}
+@media(max-width:500px){.detail-row{flex-direction:column;gap:4px}.student-table{font-size:12px}.student-table th,.student-table td{padding:10px 6px}}
+.course-enrolled{padding:18px;border-radius:14px;background:var(--cream);border:1px solid var(--line);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;transition:all .3s}
+.course-enrolled:hover{border-color:var(--gold-light);background:#fff}
+.course-enrolled-info{flex:1}
+.course-enrolled-info strong{display:block;font-size:15px;margin-bottom:4px}
+.course-enrolled-info span{font-size:12.5px;color:var(--muted)}
+.loading{display:inline-block;width:16px;height:16px;border:2px solid var(--gold-light);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.link-gold{color:var(--gold-2);font-weight:600;cursor:pointer}
+.link-gold:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-track">
+  <span><i class="fas fa-circle"></i> FORMATIONS PRATIQUES</span>
+  <span><i class="fas fa-circle"></i> DÉVELOPPEZ VOS COMPÉTENCES</span>
+  <span><i class="fas fa-circle"></i> CRÉEZ VOTRE ACTIVITÉ</span>
+  <span><i class="fas fa-circle"></i> CONSTRUISEZ VOTRE AVENIR NUMÉRIQUE</span>
+</div></div>
+
+<header class="header"><div class="header-inner">
+  <a class="logo" onclick="go('home');return false;"><div class="logo-mark">F</div><div class="logo-text"><span>FORMATION BUSINESS DIGITAL</span><small>Plateforme Premium</small></div></a>
+  <nav class="nav"><ul class="nav-links">
+    <li><a onclick="go('home');return false;">Accueil</a></li>
+    <li><a onclick="scrollTo2('formations');return false;">Nos formations</a></li>
+    <li><a onclick="scrollTo2('support');return false;">Support</a></li>
+  </ul></nav>
+  <div class="header-actions">
+    <button class="btn btn-outline" onclick="openModal('login')">SE CONNECTER</button>
+    <button class="btn btn-primary" onclick="openModal('register')">S'INSCRIRE</button>
+    <button class="burger" onclick="toggleMobile()"><i class="fas fa-bars"></i></button>
+  </div>
+</div></header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head"><div class="logo"><div class="logo-mark">F</div><div class="logo-text"><span>FBD</span><small>Plateforme Premium</small></div></div><button class="burger" onclick="toggleMobile()"><i class="fas fa-times"></i></button></div>
+  <ul>
+    <li><a onclick="go('home');toggleMobile()">Accueil</a></li>
+    <li><a onclick="scrollTo2('formations');toggleMobile()">Nos formations</a></li>
+    <li><a onclick="scrollTo2('support');toggleMobile()">Support</a></li>
+  </ul>
+  <button class="btn btn-outline" style="margin-top:20px" onclick="openModal('login');toggleMobile()">SE CONNECTER</button>
+  <button class="btn btn-primary" onclick="openModal('register');toggleMobile()">S'INSCRIRE</button>
+</div>
+
+<div class="page active" id="page-home">
+<section class="hero"><div class="container"><div class="hero-grid">
+  <div>
+    <div class="hero-badge"><i class="fas fa-star"></i> Plateforme de formation premium</div>
+    <h1>Développez vos compétences. <span class="gold">Créez votre activité.</span> Construisez votre avenir numérique.</h1>
+    <p class="hero-sub">Des formations pratiques pour apprendre, développer vos compétences et transformer vos connaissances en opportunités concrètes.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary btn-lg" onclick="scrollTo2('formations')">DÉCOUVRIR NOS FORMATIONS <i class="fas fa-arrow-right"></i></button>
+      <button class="btn btn-outline btn-lg" onclick="openModal('login')">SE CONNECTER</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>8</strong><span>Formations</span></div>
+      <div class="hero-stat"><strong>500+</strong><span>Étudiants</span></div>
+      <div class="hero-stat"><strong>44</strong><span>Modules</span></div>
+      <div class="hero-stat"><strong>98%</strong><span>Satisfaction</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="form-img" style="border-radius:32px;box-shadow:var(--shadow-lg)"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" alt="Formation"></div>
+  </div>
+</div></div></section>
+
+<section class="formations" id="formations"><div class="container">
+  <div class="section-head"><div class="section-tag">Catalogue</div><h2>NOS FORMATIONS</h2><p>Des compétences pratiques pour construire votre avenir numérique.</p></div>
+  <div class="form-grid" id="formGrid"></div>
+</div></section>
+
+<section id="support" style="padding:20px 0 80px"><div class="container">
+  <div class="support-cta">
+    <div class="section-tag" style="background:rgba(232,213,160,.2);color:var(--gold-light)">Support</div>
+    <h2>BESOIN D'AIDE ?</h2>
+    <p>Notre équipe est disponible pour vous accompagner.</p>
+    <div class="support-btns">
+      <a href="mailto:support@fbd.com" class="btn btn-cream"><i class="fas fa-envelope"></i> CONTACTER LE SUPPORT</a>
+      <a href="#" id="waSupportLink" target="_blank" class="btn btn-wa"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+    </div>
+  </div>
+</div></section>
+</div>
+
+<div class="page" id="page-dashboard">
+  <section class="dash"><div class="container">
+    <div class="dash-head">
+      <div><h1>BIENVENUE, <span id="dashName">ÉTUDIANT</span> 👋</h1><p style="color:var(--muted);margin-top:6px">Voici votre espace de formation.</p></div>
+      <button class="btn btn-outline" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+    </div>
+    <div id="dashStatusBanner"></div>
+    <div class="dash-card" style="margin-bottom:24px;background:var(--ink);color:var(--cream);border:none">
+      <h3 style="color:var(--gold-light)"><i class="fas fa-user" style="color:var(--gold)"></i> VOTRE COMPTE</h3>
+      <p style="color:rgba(251,247,240,.7);font-size:13px;margin-bottom:8px">Informations de votre compte.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <div><small style="color:var(--gold-light);font-size:11px">EMAIL</small><div id="dashEmail" style="font-size:14px;color:#fff;margin-top:4px">—</div></div>
+        <div><small style="color:var(--gold-light);font-size:11px">TÉLÉPHONE</small><div id="dashPhone" style="font-size:14px;color:#fff;margin-top:4px">—</div></div>
+      </div>
+    </div>
+    <div class="dash-stats" id="dashStats"></div>
+    <div class="dash-grid">
+      <div class="dash-card">
+        <h3>MA FORMATION <span id="dashCourseName" style="background:var(--gold-soft);color:var(--gold-2);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700">—</span></h3>
+        <div id="dashCourses"></div>
+      </div>
+      <div class="dash-card">
+        <h3>MES STATISTIQUES</h3>
+        <div style="text-align:center;padding:20px 0"><div style="font-family:'Playfair Display',serif;font-size:56px;font-weight:700;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent" id="dashPercent">0%</div><p style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:2px">Progression</p></div>
+        <div class="progress"><div class="progress-bar" id="dashBar" style="width:0%"></div></div>
+        <div class="progress-text"><span id="dashDone">0 modules</span><span id="dashTotal">0 modules</span></div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span><i class="fas fa-calendar" style="color:var(--gold)"></i> Inscrit le</span><strong id="dashSince" style="color:var(--ink)">—</strong></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span><i class="fas fa-clock" style="color:var(--gold)"></i> Dernière activité</span><strong id="dashLastAct" style="color:var(--ink)">—</strong></div>
+          <div style="display:flex;justify-content:space-between"><span><i class="fas fa-sign-in-alt" style="color:var(--gold)"></i> Dernière connexion</span><strong id="dashLastConn" style="color:var(--ink)">—</strong></div>
+        </div>
+      </div>
+    </div>
+  </div></section>
+</div>
+
+<div class="page" id="page-admin">
+  <section class="admin"><div class="container">
+    <div class="dash-head">
+      <div><h1>ESPACE <span>ADMINISTRATEUR</span></h1><p style="color:var(--muted);margin-top:6px">Gérez les inscriptions et étudiants.</p></div>
+      <button class="btn btn-outline" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+    </div>
+    <div class="dash-stats" id="adminStats"></div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="adminTab('pending',this)"><i class="fas fa-clock"></i> En attente <span id="pendingCount" style="background:var(--pending);color:#fff;padding:2px 8px;border-radius:999px;font-size:11px;margin-left:6px">0</span></button>
+      <button class="admin-tab" onclick="adminTab('students',this)"><i class="fas fa-users"></i> Étudiants</button>
+      <button class="admin-tab" onclick="adminTab('stats',this)"><i class="fas fa-chart-bar"></i> Statistiques</button>
+    </div>
+    <div class="admin-panel active" id="panel-pending">
+      <div class="admin-card">
+        <h3><i class="fas fa-clock" style="color:var(--pending)"></i> INSCRIPTIONS EN ATTENTE</h3>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:20px">Validez ou refusez les nouvelles inscriptions.</p>
+        <div id="pendingList"></div>
+      </div>
+    </div>
+    <div class="admin-panel" id="panel-students">
+      <div class="admin-card">
+        <h3><i class="fas fa-users"></i> TOUS LES ÉTUDIANTS</h3>
+        <div style="overflow-x:auto">
+          <table class="student-table">
+            <thead><tr><th>NOM</th><th>CONTACT</th><th>FORMATION</th><th>PAIEMENT</th><th>DATE</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
+            <tbody id="studentTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="admin-panel" id="panel-stats">
+      <div class="admin-card">
+        <h3><i class="fas fa-chart-bar"></i> STATISTIQUES</h3>
+        <div class="stat-grid" id="statsGrid"></div>
+        <h4 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;margin:24px 0 16px"><i class="fas fa-graduation-cap" style="color:var(--gold)"></i> Par formation</h4>
+        <div id="courseChart"></div>
+        <h4 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;margin:24px 0 16px"><i class="fas fa-coins" style="color:var(--gold)"></i> Revenus</h4>
+        <div id="revenueStats"></div>
+      </div>
+    </div>
+  </div></section>
+</div>
+
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-mark">F</div><div class="logo-text"><span style="color:var(--cream)">FORMATION BUSINESS DIGITAL</span><small>Plateforme Premium</small></div></div>
+      <p>Développez vos compétences. Créez votre activité. Construisez votre avenir numérique.</p>
+    </div>
+    <div><h4>Navigation</h4><ul><li><a onclick="go('home');return false;">Accueil</a></li><li><a onclick="scrollTo2('formations');return false;">Formations</a></li></ul></div>
+    <div><h4>Compte</h4><ul><li><a onclick="openModal('login');return false;">Connexion</a></li><li><a onclick="openModal('register');return false;">Inscription</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Formation Business Digital — Tous droits réservés.</div>
+</div></footer>
+
+<button class="float-support" onclick="scrollTo2('support')" title="Support WhatsApp"><i class="fab fa-whatsapp"></i></button>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modalContent"></div></div>
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><div><strong id="toastTitle"></strong><span id="toastMsg"></span></div></div>
+
+<script>
+(function(){
+'use strict';
+
+// ============================================
+// ⚙️ CONFIGURATION SUPABASE
+// Remplacez ces valeurs par celles de votre projet Supabase
+// ============================================
+const SUPABASE_URL = 'https://VOTRE_PROJET.supabase.co';
+const SUPABASE_ANON_KEY = 'VOTRE_CLE_ANON_PUBLIQUE';
+
+const WA = "50944941364";
+const BN = "Formation Business Digital";
+
+let supabase = null;
+try {
+  if (typeof window.supabase !== 'undefined' && SUPABASE_URL.indexOf('VOTRE') === -1) {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+} catch(e) { console.error('Supabase init error:', e); }
+
+// ============================================
+// FORMATIONS (inchangées)
+// ============================================
+const COURSES = [
+  {id:'ia',n:'01',c:'TECHNOLOGIE',t:'Intelligence Artificielle',p:2000,dur:'8 heures',m:19,cc:'FBD-IA-2026',img:'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',desc:"Découvrez les bases et les applications pratiques de l'intelligence artificielle."},
+  {id:'oratoire',n:'02',c:'COMMUNICATION',t:'Art Oratoire',p:1500,dur:'10 heures',m:25,cc:'FBD-OR-2026',img:'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',desc:"Développez votre communication, votre confiance, votre éloquence."},
+  {id:'business',n:'03',c:'BUSINESS',t:'Créer un Business en Ligne',p:2500,dur:'10 heures',m:6,cc:'FBD-BZ-2026',img:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',desc:"Apprenez à construire et développer une activité en ligne."},
+  {id:'produit',n:'04',c:'PRODUIT',t:'Créer un Produit Digital',p:1500,dur:'7 heures',m:5,cc:'FBD-PD-2026',img:'https://images.unsplash.com/photo-1553484771-371a605b060b?w=800&q=80',desc:"Apprenez à créer et commercialiser vos produits numériques."},
+  {id:'perso',n:'05',c:'DÉVELOPPEMENT',t:'Développement Personnel',p:1500,dur:'6 heures',m:5,cc:'FBD-DP-2026',img:'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80',desc:"Développez votre confiance, discipline et mindset."},
+  {id:'apps',n:'06',c:'DÉVELOPPEMENT',t:'Création d\'Applications',p:2500,dur:'12 heures',m:6,cc:'FBD-AP-2026',img:'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80',desc:"Concevez des applications numériques modernes."},
+  {id:'web',n:'07',c:'DÉVELOPPEMENT',t:'Création de Site Web',p:3000,dur:'14 heures',m:7,cc:'FBD-WB-2026',img:'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',desc:"Créez un site web professionnel et moderne."},
+  {id:'entrep',n:'08',c:'ENTREPRENEURIAT',t:'Entrepreneuriat Digital',p:1500,dur:'8 heures',m:5,cc:'FBD-EN-2026',img:'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',desc:"Fondamentaux de l'entrepreneuriat digital."}
+];
+
+function getCourse(id){for(let i=0;i<COURSES.length;i++){if(COURSES[i].id===id)return COURSES[i]}return null}
+function fmtPrice(n){try{return n.toLocaleString('fr-FR')}catch(e){return n.toString()}}
+function fmtDate(d){if(!d)return'—';try{const dt=new Date(d);return dt.toLocaleDateString('fr-FR')+' '+dt.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}catch(e){return d}}
+function fmtDateShort(d){if(!d)return'—';try{return new Date(d).toLocaleDateString('fr-FR')}catch(e){return d}}
+function waL(m){return"https://wa.me/"+WA+"?text="+encodeURIComponent(m)}
+
+function statusBadge(st){
+  const map={pending:['badge-pending',' En attente'],active:['badge-active',' Actif'],rejected:['badge-rejected',' Refusé']};
+  const m=map[st]||map.pending;
+  return'<span class="badge '+m[0]+'">'+m[1]+'</span>';
+}
+
+// ============================================
+// HASH MOT DE PASSE (SHA-256)
+// ============================================
+async function hashPassword(password) {
+  try {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password + '_fbd_salt_2026');
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  } catch (e) {
+    console.error('Hash error:', e);
+    return btoa(password);
+  }
+}
+
+async function verifyPassword(password, hash) {
+  const newHash = await hashPassword(password);
+  return newHash === hash;
+}
+
+// ============================================
+// SESSION (locale uniquement pour UX)
+// ============================================
+const SESSION_KEY = 'fbd_session_v2';
+
+function getSession() {
+  try {
+    const s = localStorage.getItem(SESSION_KEY);
+    return s ? JSON.parse(s) : null;
+  } catch (e) { return null; }
+}
+
+function setSession(data) {
+  try { localStorage.setItem(SESSION_KEY, JSON.stringify(data)); } catch (e) {}
+}
+
+function clearSession() {
+  try { localStorage.removeItem(SESSION_KEY); } catch (e) {}
+}
+
+// ============================================
+// NAVIGATION
+// ============================================
+function go(pg) {
+  try {
+    const pages = document.querySelectorAll('.page');
+    for (let i = 0; i < pages.length; i++) pages[i].classList.remove('active');
+    const t = document.getElementById('page-' + pg);
+    if (t) {
+      t.classList.add('active');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+    if (pg === 'dashboard') renderDashboard();
+    if (pg === 'admin') renderAdmin();
+  } catch (e) { console.error('go error:', e); }
+}
+
+function scrollTo2(id) {
+  go('home');
+  setTimeout(function() {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior: 'smooth'});
+  }, 150);
+}
+
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ============================================
+// CATALOGUE
+// ============================================
+function renderCatalogue() {
+  const g = document.getElementById('formGrid');
+  if (!g) return;
+  let h = '';
+  for (let i = 0; i < COURSES.length; i++) {
+    const c = COURSES[i];
+    h += '<article class="form-card"><div class="form-img"><img src="' + c.img + '" alt="' + c.t + '" loading="lazy"><div class="form-num">N° ' + c.n + ' — ' + c.c + '</div><div class="form-cat">' + c.c + '</div></div><div class="form-body"><h3 class="form-title">' + c.t + '</h3><p class="form-desc">' + c.desc + '</p><div class="form-meta"><div><i class="fas fa-clock"></i> ' + c.dur + '</div><div><i class="fas fa-layer-group"></i> ' + c.m + ' modules</div><div><i class="fas fa-key"></i> ' + c.cc + '</div></div><div class="form-foot"><div><span class="form-price-amount">' + fmtPrice(c.p) + ' G</span><span class="form-price-label">Gourdes</span></div><div class="form-actions"><button class="btn-login" onclick="openModal(\'login\',\'' + c.id + '\')"><i class="fas fa-sign-in-alt"></i> CONNEXION</button><button class="btn-enroll" onclick="openModal(\'register\',\'' + c.id + '\')">S\'INSCRIRE</button></div></div></div></article>';
+  }
+  g.innerHTML = h;
+}
+
+// ============================================
+// DASHBOARD ÉTUDIANT
+// ============================================
+async function renderDashboard() {
+  const session = getSession();
+  if (!session) { go('home'); return; }
+  
+  if (!supabase) {
+    toast('Configuration requise', 'Supabase non configuré');
+    return;
+  }
+  
+  try {
+    const { data: u, error } = await supabase
+      .from('students')
+      .select('*')
+      .eq('id', session.studentId)
+      .single();
+    
+    if (error || !u) {
+      clearSession();
+      go('home');
+      return;
+    }
+    
+    const banner = document.getElementById('dashStatusBanner');
+    if (u.status === 'pending') {
+      banner.innerHTML = '<div class="alert alert-warn" style="margin-bottom:20px"><i class="fas fa-hourglass-half"></i><div><strong>Inscription en attente de validation</strong><div style="font-size:13px;margin-top:4px">Votre demande est en cours d\'examen. Vous recevrez une confirmation par WhatsApp.</div></div></div>';
+    } else if (u.status === 'rejected') {
+      banner.innerHTML = '<div class="alert alert-err" style="margin-bottom:20px"><i class="fas fa-times-circle"></i><div><strong>Inscription refusée</strong><div style="font-size:13px;margin-top:4px">Veuillez contacter l\'administration via WhatsApp.</div></div></div>';
+    } else {
+      banner.innerHTML = '';
+    }
+    
+    document.getElementById('dashName').textContent = u.full_name.split(' ')[0].toUpperCase();
+    document.getElementById('dashEmail').textContent = u.email || '—';
+    document.getElementById('dashPhone').textContent = u.phone || '—';
+    document.getElementById('dashSince').textContent = fmtDateShort(u.created_at);
+    document.getElementById('dashLastConn').textContent = fmtDate(u.last_login);
+    document.getElementById('dashLastAct').textContent = fmtDate(u.last_activity);
+    
+    const course = getCourse(u.course_id);
+    const totalModules = course ? course.m : 0;
+    const completed = (u.progress && u.progress.completed) ? u.progress.completed.length : 0;
+    const pc = totalModules ? Math.round(completed / totalModules * 100) : 0;
+    
+    document.getElementById('dashCourseName').textContent = course ? course.t : '—';
+    document.getElementById('dashPercent').textContent = pc + '%';
+    setTimeout(function() {
+      const bar = document.getElementById('dashBar');
+      if (bar) bar.style.width = pc + '%';
+    }, 100);
+    document.getElementById('dashDone').textContent = completed + ' modules';
+    document.getElementById('dashTotal').textContent = totalModules + ' modules';
+    
+    document.getElementById('dashStats').innerHTML = '<div class="dash-stat"><i class="fas fa-graduation-cap"></i><strong>' + (course ? '1' : '0') + '</strong><span>Formation</span></div><div class="dash-stat"><i class="fas fa-check-circle"></i><strong>' + completed + '</strong><span>Terminés</span></div><div class="dash-stat"><i class="fas fa-hourglass-half"></i><strong>' + (totalModules - completed) + '</strong><span>Restants</span></div><div class="dash-stat"><i class="fas fa-chart-line"></i><strong>' + pc + '%</strong><span>Progression</span></div>';
+    
+    let cH = '';
+    if (course) {
+      cH = '<div class="course-enrolled"><div class="course-enrolled-info"><strong>' + course.t + '</strong><span>' + course.c + ' • ' + completed + '/' + totalModules + ' modules</span><div class="progress" style="margin-top:8px"><div class="progress-bar" style="width:' + pc + '%"></div></div></div><button class="btn btn-primary btn-sm">' + (completed >= totalModules ? '✓ TERMINÉ' : 'CONTINUER') + '</button></div>';
+    } else {
+      cH = '<p style="color:var(--muted);font-size:14px">Aucune formation assignée.</p>';
+    }
+    document.getElementById('dashCourses').innerHTML = cH;
+  } catch (e) {
+    console.error('Dashboard error:', e);
+    toast('Erreur', 'Impossible de charger le dashboard');
+  }
+}
+
+// ============================================
+// ADMINISTRATION
+// ============================================
+function adminTab(n, b) {
+  const tabs = document.querySelectorAll('.admin-tab');
+  for (let i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+  b.classList.add('active');
+  const panels = document.querySelectorAll('.admin-panel');
+  for (let i = 0; i < panels.length; i++) panels[i].classList.remove('active');
+  document.getElementById('panel-' + n).classList.add('active');
+  if (n === 'stats') renderStats();
+  if (n === 'students') renderStudentTable();
+  if (n === 'pending') renderPendingList();
+}
+
+async function renderAdmin() {
+  const session = getSession();
+  if (!session || !session.isAdmin) { go('home'); return; }
+  
+  if (!supabase) {
+    document.getElementById('adminStats').innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-triangle"></i> Supabase non configuré. Veuillez ajouter vos clés dans le code.</div>';
+    return;
+  }
+  
+  try {
+    const { data: students, error } = await supabase.from('students').select('*');
+    if (error) throw error;
+    
+    let pending = 0, active = 0, rejected = 0, totalRev = 0;
+    const byCourse = {};
+    COURSES.forEach(c => byCourse[c.id] = {n: c.t, c: 0, rev: 0});
+    
+    students.forEach(s => {
+      if (s.status === 'pending') pending++;
+      else if (s.status === 'active') {
+        active++;
+        const c = getCourse(s.course_id);
+        if (c) {
+          totalRev += c.p;
+          if (byCourse[s.course_id]) { byCourse[s.course_id].c++; byCourse[s.course_id].rev += c.p; }
+        }
+      } else if (s.status === 'rejected') rejected++;
+    });
+    
+    document.getElementById('pendingCount').textContent = pending;
+    document.getElementById('adminStats').innerHTML = '<div class="dash-stat"><i class="fas fa-users"></i><strong>' + students.length + '</strong><span>Total</span></div><div class="dash-stat"><i class="fas fa-user-check" style="color:var(--active)"></i><strong>' + active + '</strong><span>Actifs</span></div><div class="dash-stat"><i class="fas fa-clock" style="color:var(--pending)"></i><strong>' + pending + '</strong><span>En attente</span></div><div class="dash-stat"><i class="fas fa-coins"></i><strong>' + fmtPrice(totalRev) + '</strong><span>Revenus (G)</span></div>';
+    
+    renderPendingList(students);
+    renderStudentTable(students);
+    renderStatsData(students, byCourse, totalRev);
+  } catch (e) {
+    console.error('Admin render error:', e);
+    toast('Erreur', 'Impossible de charger les données');
+  }
+}
+
+async function renderPendingList(students) {
+  const container = document.getElementById('pendingList');
+  if (!container) return;
+  
+  if (!students) {
+    const { data } = await supabase.from('students').select('*').eq('status', 'pending').order('created_at', {ascending: false});
+    students = data || [];
+  } else {
+    students = students.filter(s => s.status === 'pending');
+  }
+  
+  if (students.length === 0) {
+    container.innerHTML = '<div class="empty-state"><i class="fas fa-check-circle"></i><p>Aucune inscription en attente.</p></div>';
+    return;
+  }
+  
+  let h = '';
+  students.forEach(s => {
+    const course = getCourse(s.course_id);
+    h += '<div class="student-item" style="background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:12px;border-left:4px solid var(--pending)">';
+    h += '<div style="flex:1;min-width:200px">';
+    h += '<strong>' + s.full_name + ' ' + statusBadge(s.status) + '</strong>';
+    h += '<div style="font-size:13px;color:var(--muted);margin-top:4px"><i class="fas fa-envelope"></i> ' + (s.email || '—') + '</div>';
+    h += '<div style="font-size:13px;color:var(--muted)"><i class="fas fa-phone"></i> ' + (s.phone || '—') + '</div>';
+    h += '<div style="font-size:13px;color:var(--muted)"><i class="fas fa-book"></i> ' + (course ? course.t : '—') + '</div>';
+    h += '<div style="font-size:13px;color:var(--muted)"><i class="fas fa-calendar"></i> ' + fmtDate(s.created_at) + '</div>';
+    if (s.payment_method) {
+      h += '<div style="font-size:13px;color:var(--muted)"><i class="fas fa-credit-card"></i> ' + s.payment_method + (s.transaction_ref ? ' • Réf: ' + s.transaction_ref : '') + '</div>';
+    }
+    if (s.amount_paid > 0) {
+      h += '<div style="font-size:13px;color:var(--gold-2);font-weight:600"><i class="fas fa-coins"></i> ' + fmtPrice(s.amount_paid) + ' G payés</div>';
+    }
+    h += '</div>';
+    h += '<div style="display:flex;gap:8px;flex-wrap:wrap">';
+    h += '<button class="btn btn-success btn-sm" onclick="validateStudent(\'' + s.id + '\')"><i class="fas fa-check"></i> VALIDER</button>';
+    h += '<button class="btn btn-danger btn-sm" onclick="rejectStudent(\'' + s.id + '\')"><i class="fas fa-times"></i> REFUSER</button>';
+    h += '<button class="icon-btn wa" onclick="contactStudent(\'' + s.id + '\')" title="WhatsApp"><i class="fab fa-whatsapp"></i></button>';
+    h += '<button class="icon-btn" onclick="viewStudent(\'' + s.id + '\')" title="Voir"><i class="fas fa-eye"></i></button>';
+    h += '</div>';
+    h += '</div>';
+  });
+  container.innerHTML = h;
+}
+
+async function renderStudentTable(students) {
+  const tbody = document.getElementById('studentTableBody');
+  if (!tbody) return;
+  
+  if (!students) {
+    const { data } = await supabase.from('students').select('*').order('created_at', {ascending: false});
+    students = data || [];
+  }
+  
+  if (students.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><i class="fas fa-users"></i><p>Aucun étudiant.</p></div></td></tr>';
+    return;
+  }
+  
+  let h = '';
+  students.forEach(s => {
+    const course = getCourse(s.course_id);
+    const statusClass = s.status === 'active' ? 'badge-active' : s.status === 'rejected' ? 'badge-rejected' : 'badge-pending';
+    const statusLabel = s.status === 'active' ? 'Actif' : s.status === 'rejected' ? 'Refusé' : 'En attente';
+    h += '<tr>';
+    h += '<td><strong>' + s.full_name + '</strong></td>';
+    h += '<td>' + (s.email || '—') + '<br><small style="color:var(--muted)">' + (s.phone || '') + '</small></td>';
+    h += '<td>' + (course ? course.t : '—') + '</td>';
+    h += '<td>' + (s.payment_method || '—') + '<br><small>' + fmtPrice(s.amount_paid || 0) + ' G</small></td>';
+    h += '<td>' + fmtDateShort(s.created_at) + '</td>';
+    h += '<td><span class="badge ' + statusClass + '">' + statusLabel + '</span></td>';
+    h += '<td><div class="table-actions">';
+    h += '<button class="icon-btn" onclick="viewStudent(\'' + s.id + '\')" title="Voir"><i class="fas fa-eye"></i></button>';
+    if (s.status === 'pending') {
+      h += '<button class="icon-btn success" onclick="validateStudent(\'' + s.id + '\')" title="Valider"><i class="fas fa-check"></i></button>';
+      h += '<button class="icon-btn danger" onclick="rejectStudent(\'' + s.id + '\')" title="Refuser"><i class="fas fa-times"></i></button>';
+    } else if (s.status === 'active') {
+      h += '<button class="icon-btn danger" onclick="rejectStudent(\'' + s.id + '\')" title="Désactiver"><i class="fas fa-ban"></i></button>';
+    } else if (s.status === 'rejected') {
+      h += '<button class="icon-btn success" onclick="validateStudent(\'' + s.id + '\')" title="Réactiver"><i class="fas fa-check"></i></button>';
+    }
+    h += '<button class="icon-btn danger" onclick="deleteStudent(\'' + s.id + '\')" title="Supprimer"><i class="fas fa-trash"></i></button>';
+    h += '</div></td>';
+    h += '</tr>';
+  });
+  tbody.innerHTML = h;
+}
+
+async function renderStatsData(students, byCourse, totalRev) {
+  if (!students) {
+    const { data } = await supabase.from('students').select('*');
+    students = data || [];
+    byCourse = {};
+    COURSES.forEach(c => byCourse[c.id] = {n: c.t, c: 0, rev: 0});
+    totalRev = 0;
+    students.forEach(s => {
+      if (s.status === 'active') {
+        const c = getCourse(s.course_id);
+        if (c) { totalRev += c.p; if (byCourse[s.course_id]) { byCourse[s.course_id].c++; byCourse[s.course_id].rev += c.p; } }
+      }
+    });
+  }
+  
+  let pending = 0, active = 0, rejected = 0;
+  students.forEach(s => {
+    if (s.status === 'pending') pending++;
+    else if (s.status === 'active') active++;
+    else if (s.status === 'rejected') rejected++;
+  });
+  
+  document.getElementById('statsGrid').innerHTML = '<div class="stat-mini"><strong>' + students.length + '</strong><span>Total</span></div><div class="stat-mini"><strong>' + active + '</strong><span>Actifs</span></div><div class="stat-mini"><strong>' + pending + '</strong><span>En attente</span></div><div class="stat-mini"><strong>' + rejected + '</strong><span>Refusés</span></div>';
+  
+  let chH = '';
+  let maxC = 1;
+  for (let k in byCourse) { if (byCourse[k].c > maxC) maxC = byCourse[k].c; }
+  for (let k in byCourse) {
+    const bc = byCourse[k];
+    const pct = Math.round(bc.c / maxC * 100);
+    chH += '<div class="chart-bar"><div class="chart-bar-label">' + bc.n + '</div><div class="chart-bar-track"><div class="chart-bar-fill" style="width:' + Math.max(pct, bc.c > 0 ? 15 : 0) + '%">' + bc.c + '</div></div><div class="chart-bar-count">' + fmtPrice(bc.rev) + ' G</div></div>';
+  }
+  document.getElementById('courseChart').innerHTML = chH;
+  document.getElementById('revenueStats').innerHTML = '<div class="stat-grid"><div class="stat-mini"><strong style="color:var(--active)">' + fmtPrice(totalRev) + '</strong><span>Revenus</span></div></div>';
+}
+
+function renderStats() { renderStatsData(); }
+
+// ============================================
+// ACTIONS ADMIN
+// ============================================
+async function validateStudent(id) {
+  if (!supabase) { toast('Erreur', 'Supabase non configuré'); return; }
+  if (!confirm('Valider cette inscription ?')) return;
+  
+  try {
+    const { data: student } = await supabase.from('students').select('*').eq('id', id).single();
+    if (!student) return;
+    
+    const { error } = await supabase
+      .from('students')
+      .update({ status: 'active', validated_at: new Date().toISOString() })
+      .eq('id', id);
+    
+    if (error) throw error;
+    
+    // WhatsApp notification
+    const course = getCourse(student.course_id);
+    const waMsg = "🎓 INSCRIPTION VALIDÉE !\n\nBonjour " + student.full_name + " !\n\nVotre inscription a été validée.\n\n📚 Formation: " + (course ? course.t : '') + "\n\nVous pouvez maintenant vous connecter avec:\n• Email: " + (student.email || '') + "\n• Mot de passe: (celui choisi)\n\nBienvenue !";
+    if (student.phone) {
+      try { window.open(waL(waMsg), '_blank'); } catch(e) {}
+    }
+    
+    toast('Validé !', student.full_name + ' peut maintenant se connecter');
+    renderAdmin();
+  } catch (e) {
+    console.error('Validate error:', e);
+    toast('Erreur', 'Impossible de valider');
+  }
+}
+
+async function rejectStudent(id) {
+  if (!supabase) { toast('Erreur', 'Supabase non configuré'); return; }
+  if (!confirm('Refuser cette inscription ?')) return;
+  
+  try {
+    const { error } = await supabase.from('students').update({ status: 'rejected' }).eq('id', id);
+    if (error) throw error;
+    toast('Refusé', 'Inscription refusée');
+    renderAdmin();
+  } catch (e) {
+    console.error('Reject error:', e);
+    toast('Erreur', 'Impossible de refuser');
+  }
+}
+
+async function deleteStudent(id) {
+  if (!supabase) { toast('Erreur', 'Supabase non configuré'); return; }
+  if (!confirm('Supprimer définitivement cet étudiant ?')) return;
+  
+  try {
+    const { error } = await supabase.from('students').delete().eq('id', id);
+    if (error) throw error;
+    toast('Supprimé', 'Étudiant retiré');
+    renderAdmin();
+  } catch (e) {
+    console.error('Delete error:', e);
+    toast('Erreur', 'Impossible de supprimer');
+  }
+}
+
+async function viewStudent(id) {
+  if (!supabase) return;
+  const { data: u } = await supabase.from('students').select('*').eq('id', id).single();
+  if (!u) return;
+  
+  const course = getCourse(u.course_id);
+  const h = '<button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>' +
+    '<div class="detail-header"><h2 style="font-size:22px;margin-bottom:8px">' + u.full_name + '</h2><div>' + statusBadge(u.status) + '</div></div>' +
+    '<div class="detail-row"><strong>Email</strong><span>' + (u.email || '—') + '</span></div>' +
+    '<div class="detail-row"><strong>Téléphone</strong><span>' + (u.phone || '—') + '</span></div>' +
+    '<div class="detail-row"><strong>Formation</strong><span>' + (course ? course.t : '—') + '</span></div>' +
+    '<div class="detail-row"><strong>Paiement</strong><span>' + (u.payment_method || '—') + ' • ' + fmtPrice(u.amount_paid || 0) + ' G</span></div>' +
+    '<div class="detail-row"><strong>Référence</strong><span>' + (u.transaction_ref || '—') + '</span></div>' +
+    '<div class="detail-row"><strong>Inscrit le</strong><span>' + fmtDate(u.created_at) + '</span></div>' +
+    '<div class="detail-row"><strong>Validé le</strong><span>' + fmtDate(u.validated_at) + '</span></div>' +
+    '<div class="detail-row"><strong>Dernière connexion</strong><span>' + fmtDate(u.last_login) + '</span></div>' +
+    '<div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap">' +
+    '<a href="' + waL("Bonjour " + u.full_name + " !") + '" target="_blank" class="btn btn-wa btn-sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>' +
+    '</div>';
+  
+  document.getElementById('modalContent').innerHTML = h;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function contactStudent(id) {
+  // Fonction appelée depuis pending list
+  viewStudent(id);
+}
+
+// ============================================
+// INSCRIPTION
+// ============================================
+async function doRegister(e) {
+  if (e) e.preventDefault();
+  
+  if (!supabase) {
+    toast('Erreur', 'Base de données non configurée. Contactez l\'administrateur.');
+    return;
+  }
+  
+  const aB = document.getElementById('regAlert');
+  const name = document.getElementById('regName').value.trim();
+  const contact = document.getElementById('regContact').value.trim();
+  const password = document.getElementById('regPassword').value;
+  const password2 = document.getElementById('regPassword2').value;
+  const course = document.getElementById('regCourse').value;
+  const payment = document.getElementById('regPayment').value;
+  const amount = document.getElementById('regAmount').value;
+  const transaction = document.getElementById('regTransaction').value.trim();
+  
+  if (!name || !contact || !password || !course) {
+    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Remplissez tous les champs obligatoires.</div>';
+    return;
+  }
+  
+  if (password.length < 6) {
+    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Le mot de passe doit contenir au moins 6 caractères.</div>';
+    return;
+  }
+  
+  if (password !== password2) {
+    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Les mots de passe ne correspondent pas.</div>';
+    return;
+  }
+  
+  // Déterminer si c'est email ou téléphone
+  const isEmail = contact.indexOf('@') !== -1;
+  const email = isEmail ? contact.toLowerCase() : null;
+  const phone = !isEmail ? contact : null;
+  
+  try {
+    // Vérifier doublon
+    let query = supabase.from('students').select('id').limit(1);
+    if (email) query = query.eq('email', email);
+    else if (phone) query = query.eq('phone', phone);
+    
+    const { data: existing } = await query;
+    if (existing && existing.length > 0) {
+      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Cet email/téléphone est déjà utilisé.</div>';
+      return;
+    }
+    
+    // Hasher mot de passe
+    const passwordHash = await hashPassword(password);
+    
+    // Enregistrer
+    const { data, error } = await supabase
+      .from('students')
+      .insert([{
+        full_name: name,
+        email: email,
+        phone: phone,
+        password_hash: passwordHash,
+        course_id: course,
+        payment_method: payment,
+        amount_paid: parseFloat(amount) || 0,
+        transaction_ref: transaction,
+        status: 'pending'
+      }])
+      .select()
+      .single();
+    
+    if (error) {
+      console.error('Insert error:', error);
+      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Erreur: ' + error.message + '</div>';
+      return;
+    }
+    
+    // WhatsApp
+    const c = getCourse(course);
+    const cn = c ? c.t : '';
+    const p = c ? c.p : 0;
+    const waMsg = "🎓 NOUVELLE INSCRIPTION\n\n👤 Nom: " + name + "\n📧 Email: " + (email || '—') + "\n📱 Téléphone: " + (phone || '—') + "\n📚 Formation: " + cn + "\n Montant: " + fmtPrice(p) + " G\n💳 Paiement: " + (payment || '—') + (transaction ? "\n🔢 Réf: " + transaction : '') + "\n\n⏳ En attente de validation.";
+    
+    try { window.open(waL(waMsg), '_blank'); } catch (err) {}
+    
+    if (aB) aB.innerHTML = '<div class="alert alert-ok"><i class="fas fa-check-circle"></i> Inscription enregistrée !<br><small style="margin-top:6px;display:block">Votre demande est <strong>en attente de validation</strong>. Envoyez le message WhatsApp pour finaliser.</small></div>';
+    
+    setTimeout(function() { closeModal(); toast('Inscription envoyée !', 'En attente de validation.'); }, 3000);
+  } catch (err) {
+    console.error('Register error:', err);
+    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Erreur: ' + err.message + '</div>';
+  }
+}
+
+// ============================================
+// CONNEXION
+// ============================================
+async function doLogin(e) {
+  if (e) e.preventDefault();
+  
+  if (!supabase) {
+    toast('Erreur', 'Base de données non configurée');
+    return;
+  }
+  
+  const contact = document.getElementById('loginContact').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const aB = document.getElementById('loginAlert');
+  
+  if (!contact || !password) {
+    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Tous les champs sont obligatoires.</div>';
+    return;
+  }
+  
+  try {
+    const isEmail = contact.indexOf('@') !== -1;
+    let query = supabase.from('students').select('*').limit(1);
+    
+    if (isEmail) query = query.eq('email', contact.toLowerCase());
+    else query = query.eq('phone', contact);
+    
+    const { data: users, error } = await query;
+    
+    if (error || !users || users.length === 0) {
+      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Aucun compte trouvé avec ces informations.</div>';
+      return;
+    }
+    
+    const u = users[0];
+    const valid = await verifyPassword(password, u.password_hash);
+    
+    if (!valid) {
+      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Mot de passe incorrect.</div>';
+      return;
+    }
+    
+    if (u.status === 'pending') {
+      if (aB) aB.innerHTML = '<div class="alert alert-warn"><i class="fas fa-hourglass-half"></i> Votre inscription est en attente de validation.</div>';
+      return;
+    }
+    if (u.status === 'rejected') {
+      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-times-circle"></i> Inscription refusée. Contactez l\'administration.</div>';
+      return;
+    }
+    
+    // Mettre à jour last_login
+    await supabase.from('students').update({ last_login: new Date().toISOString() }).eq('id', u.id);
+    
+    setSession({ studentId: u.id, isAdmin: false });
+    closeModal();
+    toast('Bienvenue ' + u.full_name.split(' ')[0] + ' !', 'Connexion réussie');
+    setTimeout(function() { go('dashboard'); }, 500);
+  } catch (err) {
+    console.error('Login error:', err);
+    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Erreur: ' + err.message + '</div>';
+  }
+}
+
+async function doAdminLogin(e) {
+  if (e) e.preventDefault();
+  
+  if (!supabase) {
+    toast('Erreur', 'Base de données non configurée');
+    return;
+  }
+  
+  const email = document.getElementById('adminLoginEmail').value.trim().toLowerCase();
+  const password = document.getElementById('adminLoginPassword').value;
+  const aB = document.getElementById('adminLoginAlert');
+  
+  try {
+    const { data: admins } = await supabase.from('admins').select('*').eq('email', email).limit(1);
+    
+    if (!admins || admins.length === 0) {
+      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Admin non trouvé.</div>';
+      return;
+    }
+    
+    const admin = admins[0];
+    const valid = await verifyPassword(password, admin.password_hash);
+    
+    if (!valid) {
+      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Mot de passe incorrect.</div>';
+      return;
+    }
+    
+    setSession({ adminId: admin.id, isAdmin: true });
+    closeModal();
+    toast('Bienvenue Admin !', 'Connexion réussie');
+    setTimeout(function() { go('admin'); }, 500);
+  } catch (err) {
+    console.error('Admin login error:', err);
+    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Erreur: ' + err.message + '</div>';
+  }
+}
+
+function logout() {
+  clearSession();
+  go('home');
+  toast('Déconnexion', 'À bientôt !');
+}
+
+// ============================================
+// MODALS
+// ============================================
+function openModal(tp, d) {
+  const ov = document.getElementById('modalOverlay');
+  const ct = document.getElementById('modalContent');
+  let h = '';
+  
+  if (tp === 'register') {
+    let op = '';
+    for (let i = 0; i < COURSES.length; i++) {
+      const c = COURSES[i];
+      const sl = (d === c.id) ? ' selected' : '';
+      op += '<option value="' + c.id + '"' + sl + '>' + c.t + ' — ' + fmtPrice(c.p) + ' G</option>';
+    }
+    h = '<button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>';
+    h += '<h2>INSCRIPTION</h2>';
+    h += '<p class="sub">Créez votre compte en 30 secondes.</p>';
+    h += '<div id="regAlert"></div>';
+    h += '<form onsubmit="doRegister(event)">';
+    h += '<div class="form-group"><label>Nom complet *</label><input type="text" id="regName" required placeholder="Ex: Jean Pierre"></div>';
+    h += '<div class="form-group"><label>Email ou WhatsApp *</label><input type="text" id="regContact" required placeholder="email@exemple.com ou +509..."></div>';
+    h += '<div class="form-row"><div class="form-group"><label>Mot de passe *</label><input type="password" id="regPassword" required minlength="6" placeholder="6 caractères min."></div><div class="form-group"><label>Confirmer *</label><input type="password" id="regPassword2" required minlength="6" placeholder="Retapez le mot de passe"></div></div>';
+    h += '<div class="form-group"><label>Formation choisie *</label><select id="regCourse" required><option value="">— Sélectionnez —</option>' + op + '</select></div>';
+    h += '<div class="form-row"><div class="form-group"><label>Mode de paiement</label><select id="regPayment"><option value="">— Optionnel —</option><option value="MonCash">MonCash</option><option value="NatCash">NatCash</option><option value="Wave">Wave</option><option value="Virement">Virement bancaire</option></select></div><div class="form-group"><label>Montant payé (G)</label><input type="number" id="regAmount" placeholder="0" min="0"></div></div>';
+    h += '<div class="form-group"><label>Référence transaction</label><input type="text" id="regTransaction" placeholder="Ex: MC123456 (optionnel)"></div>';
+    h += '<button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-user-plus"></i> S\'INSCRIRE</button>';
+    h += '</form>';
+    h += '<div class="alert alert-info" style="margin-top:16px"><i class="fas fa-info-circle"></i><div>Après inscription, un message WhatsApp s\'ouvrira. Envoyez-le pour finaliser. Votre compte sera validé sous 24h.</div></div>';
+    h += '<div style="text-align:center;margin-top:18px;font-size:13.5px;color:var(--muted)">Déjà inscrit ? <a onclick="openModal(\'login\')" class="link-gold">Se connecter</a></div>';
+  } else if (tp === 'login') {
+    h = '<button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>';
+    h += '<h2>CONNEXION</h2>';
+    h += '<p class="sub">Accédez à votre espace de formation.</p>';
+    h += '<div id="loginAlert"></div>';
+    h += '<form onsubmit="doLogin(event)">';
+    h += '<div class="form-group"><label>Email ou Téléphone *</label><input type="text" id="loginContact" required placeholder="email@exemple.com ou +509..."></div>';
+    h += '<div class="form-group"><label>Mot de passe *</label><input type="password" id="loginPassword" required placeholder="Votre mot de passe"></div>';
+    h += '<button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-sign-in-alt"></i> SE CONNECTER</button>';
+    h += '</form>';
+    h += '<div style="text-align:center;margin-top:18px;font-size:13.5px;color:var(--muted)">Pas de compte ? <a onclick="openModal(\'register\')" class="link-gold">S\'inscrire</a></div>';
+    h += '<div style="text-align:center;margin-top:10px;font-size:13px"><a onclick="openModal(\'adminLogin\')" class="link-gold"><i class="fas fa-user-shield"></i> Espace Admin</a></div>';
+  } else if (tp === 'adminLogin') {
+    h = '<button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>';
+    h += '<h2>CONNEXION ADMIN</h2>';
+    h += '<p class="sub">Accès réservé à l\'administrateur.</p>';
+    h += '<div id="adminLoginAlert"></div>';
+    h += '<form onsubmit="doAdminLogin(event)">';
+    h += '<div class="form-group"><label>Email admin</label><input type="email" id="adminLoginEmail" required placeholder="admin@fbd.com"></div>';
+    h += '<div class="form-group"><label>Mot de passe</label><input type="password" id="adminLoginPassword" required></div>';
+    h += '<button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-user-shield"></i> SE CONNECTER</button>';
+    h += '</form>';
+    h += '<div style="text-align:center;margin-top:18px;font-size:13px"><a onclick="openModal(\'login\')" class="link-gold"><i class="fas fa-arrow-left"></i> Retour connexion étudiant</a></div>';
+  }
+  
+  ct.innerHTML = h;
+  ov.classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+// ============================================
+// UTILITAIRES
+// ============================================
+function toast(t, m) {
+  document.getElementById('toastTitle').textContent = t;
+  document.getElementById('toastMsg').textContent = m;
+  const x = document.getElementById('toast');
+  x.classList.add('show');
+  setTimeout(function() { x.classList.remove('show'); }, 3500);
+}
+
+// ============================================
+// EXPOSITION GLOBALE
+// ============================================
+window.go = go;
+window.scrollTo2 = scrollTo2;
+window.toggleMobile = toggleMobile;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.doLogin = doLogin;
+window.doRegister = doRegister;
+window.doAdminLogin = doAdminLogin;
+window.logout = logout;
+window.adminTab = adminTab;
+window.validateStudent = validateStudent;
+window.rejectStudent = rejectStudent;
+window.deleteStudent = deleteStudent;
+window.viewStudent = viewStudent;
+window.contactStudent = contactStudent;
+
+// ============================================
+// INITIALISATION
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    const ws = document.getElementById('waSupportLink');
+    if (ws) ws.href = waL("Bonjour " + BN + " !");
+    renderCatalogue();
+    
+    const session = getSession();
+    if (session) {
+      if (session.isAdmin) go('admin');
+      else if (session.studentId) go('dashboard');
+    }
+    
+    // Vérification Supabase
+    if (!supabase) {
+      console.warn('⚠️ Supabase non configuré. Ajoutez vos clés SUPABASE_URL et SUPABASE_ANON_KEY dans le code.');
+    }
+  } catch (e) {
+    console.error('Init error:', e);
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+})();
+</script>
+</body>
+</html>
+
+
+              <script>
+                              const SUPABASE_URL = 'https://VOTRE_PROJET.supabase.co';
+const SUPABASE_ANON_KEY = 'VOTRE_CLE_ANON_PUBLIQUE';
+
+
+              </script>
+                        </body>
+                        </html>
+                    
