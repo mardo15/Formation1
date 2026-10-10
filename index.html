@@ -12,7 +12,7 @@
 <link href="https://cdn.jsdelivr.net/fontsource/fonts/playfair-display@latest/latin-700-normal.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
 <style>
-:root{--cream:#FBF7F0;--cream-2:#F5EFE3;--gold:#C9A24B;--gold-2:#B8892F;--gold-light:#E8D5A0;--gold-soft:#F3E7C4;--white:#FFF;--ink:#1C1A16;--ink-2:#3A3630;--muted:#6B6458;--line:#E8DFC9;--wa:#25D366;--pending:#F59E0B;--active:#10B981;--rejected:#EF4444;--shadow:0 10px 30px rgba(60,45,10,.08);--shadow-lg:0 20px 60px rgba(60,45,10,.12);--radius:16px;--radius-lg:24px;--grad-gold:linear-gradient(135deg,#E8D5A0 0%,#C9A24B 50%,#B8892F 100%);--grad-cream:linear-gradient(135deg,#FBF7F0 0%,#F5EFE3 100%)}
+:root{--cream:#FBF7F0;--cream-2:#F5EFE3;--gold:#C9A24B;--gold-2:#B8892F;--gold-light:#E8D5A0;--gold-soft:#F3E7C4;--white:#FFF;--ink:#1C1A16;--ink-2:#3A3630;--muted:#6B6458;--line:#E8DFC9;--wa:#25D366;--pending:#F59E0B;--active:#10B981;--rejected:#EF4444;--shadow:0 10px 30px rgba(60,45,10,.08);--shadow-lg:0 20px 60px rgba(60,45,10,.12);--radius:16px;--radius-lg:24px;--grad-gold:linear-gradient(135deg,#E8D5A0 0%,#C9A24B 50%,#B8892F 100%);--grad-cream:linear-gradient(135deg,#FBF7F0 0%,#F5EFE3 100%);--grad-soft:linear-gradient(135deg,#F3E7C4 0%,#FBF7F0 100%)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;overflow-x:hidden;min-height:100vh}
@@ -42,6 +42,7 @@ section{padding:80px 0;position:relative}
 .nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-2);cursor:pointer}
 .nav-links a:hover{color:var(--gold-2)}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:600;font-size:14px;transition:all .3s;cursor:pointer;white-space:nowrap}
+.btn[disabled]{opacity:.6;cursor:not-allowed;transform:none}
 .btn-primary{background:var(--grad-gold);color:#fff;box-shadow:0 8px 20px rgba(201,162,75,.3)}
 .btn-primary:hover{transform:translateY(-2px)}
 .btn-outline{border:1.5px solid var(--ink);color:var(--ink);background:transparent}
@@ -127,6 +128,7 @@ section{padding:80px 0;position:relative}
 .form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
 .form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 16px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-family:inherit;font-size:14.5px}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold)}
+.form-group input[readonly]{background:var(--cream-2);color:var(--muted)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:500px){.form-row{grid-template-columns:1fr}}
 .modal .btn{width:100%;justify-content:center;margin-top:8px}
@@ -240,22 +242,15 @@ section{padding:80px 0;position:relative}
 .player-info h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:700;margin-bottom:10px}
 .player-info p{font-size:14px;color:var(--muted);margin-bottom:16px}
 @media(max-width:500px){.player-grid{grid-template-columns:1fr}.modules-list{max-height:400px}}
+/* Ajouts: migration */
+.mig-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--cream);font-size:13.5px}
+.mig-item input{width:18px;height:18px;flex-shrink:0}
+.mig-log{margin-top:16px;font-size:13px;line-height:1.7}
+.mig-log div{padding:6px 0;border-bottom:1px solid var(--line)}
+.loading-row{text-align:center;padding:30px;color:var(--muted);font-size:14px}
 </style>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-const SUPABASE_URL = "https://yozgwjgdctkdukcborsp.supabase.co";
-const SUPABASE_KEY = "sb_publishable_6QLBDHGQ8r5q2Ab1M0Mh";
-
-const supabase = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-console.log("Supabase pare!");
-</script>
 
 <div class="topbar"><div class="topbar-track">
   <span><i class="fas fa-circle"></i> FORMATIONS PRATIQUES</span>
@@ -406,6 +401,7 @@ console.log("Supabase pare!");
       <button class="admin-tab active" onclick="adminTab('students',this)"><i class="fas fa-users"></i> Étudiants</button>
       <button class="admin-tab" onclick="adminTab('add',this)"><i class="fas fa-user-plus"></i> Ajouter</button>
       <button class="admin-tab" onclick="adminTab('stats',this)"><i class="fas fa-chart-bar"></i> Statistiques</button>
+      <button class="admin-tab" onclick="adminTab('migrate',this)"><i class="fas fa-database"></i> Migration</button>
     </div>
     <div class="admin-panel active" id="panel-students">
       <div class="admin-card">
@@ -434,7 +430,7 @@ console.log("Supabase pare!");
     <div class="admin-panel" id="panel-add">
       <div class="admin-card">
         <h3><i class="fas fa-user-plus"></i> AJOUTER UN ÉTUDIANT</h3>
-        <p style="color:var(--muted);font-size:14px;margin-bottom:20px">Remplissez le formulaire pour ajouter un nouvel étudiant.</p>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:20px">Remplissez le formulaire pour ajouter un nouvel étudiant. Son compte sera créé dans Supabase et fonctionnera sur tous ses appareils.</p>
         <div id="addAlert"></div>
         <form onsubmit="addStudent(event)">
           <div class="form-row">
@@ -442,14 +438,14 @@ console.log("Supabase pare!");
             <div class="form-group"><label>Email *</label><input type="email" id="addEmail" required placeholder="email@gmail.com"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Mot de passe *</label><input type="text" id="addPassword" required placeholder="Mot de passe"></div>
+            <div class="form-group"><label>Mot de passe * (min. 6 caractères)</label><input type="text" id="addPassword" required minlength="6" placeholder="Mot de passe"></div>
             <div class="form-group"><label>Code d'accès unique *</label><input type="text" id="addCode" required placeholder="0102030406" style="font-family:'Courier New',monospace;font-weight:700;letter-spacing:2px"></div>
           </div>
           <div class="form-row">
             <div class="form-group"><label>Formation *</label><select id="addCourse" required><option value="">— Sélectionnez —</option></select></div>
             <div class="form-group"><label>Statut</label><select id="addStatus"><option value="active">Actif</option><option value="pending">En attente</option></select></div>
           </div>
-          <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-plus"></i> ENREGISTRER L'ÉTUDIANT</button>
+          <button type="submit" class="btn btn-primary btn-lg" id="addBtn"><i class="fas fa-plus"></i> ENREGISTRER L'ÉTUDIANT</button>
         </form>
       </div>
     </div>
@@ -461,6 +457,15 @@ console.log("Supabase pare!");
         <div id="courseChart"></div>
         <h4 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;margin:24px 0 16px"><i class="fas fa-coins" style="color:var(--gold)"></i> Revenus</h4>
         <div id="revenueStats"></div>
+      </div>
+    </div>
+    <div class="admin-panel" id="panel-migrate">
+      <div class="admin-card">
+        <h3><i class="fas fa-database"></i> MIGRER LES ANCIENS COMPTES (localStorage → Supabase)</h3>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:16px">Cet outil lit les anciens comptes enregistrés dans <strong>ce navigateur</strong> et les envoie dans Supabase, avec leur mot de passe, code d'accès, formation et progression. Rien n'est supprimé automatiquement. Refaites l'opération sur chaque appareil où des étudiants s'étaient inscrits.</p>
+        <div id="migList"></div>
+        <div id="migActions"></div>
+        <div class="mig-log" id="migLog"></div>
       </div>
     </div>
   </div></section>
@@ -483,6 +488,9 @@ console.log("Supabase pare!");
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modalContent"></div></div>
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><div><strong id="toastTitle"></strong><span id="toastMsg"></span></div></div>
 
+<!-- Bibliothèque Supabase (doit venir AVANT le script principal) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 (function(){
 'use strict';
@@ -491,18 +499,79 @@ var WA="44941364";
 var BN="Formation Business Digital";
 
 // ============================================
-// BASE DE DONNÉES
+// CONNEXION SUPABASE
+// (la clé publishable est faite pour être publique; la sécurité vient du RLS)
 // ============================================
-function setDB(key, val) {
-  try { localStorage.setItem('fbd_' + key, JSON.stringify(val)); return true; }
-  catch (e) { console.error('setDB error:', e); return false; }
+var SUPABASE_URL = "https://yozgwjgdctkdukcborsp.supabase.co";
+var SUPABASE_KEY = "sb_publishable_6QLBDHGQ8r5q2Ab1M0Mh";
+
+var sb = null;       // client principal (session de l'utilisateur connecté)
+var sbAdmin2 = null; // client secondaire (sans session) pour créer des comptes depuis l'admin
+
+try {
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+} catch (e) {
+  console.error('Supabase init error:', e);
 }
 
-function getDB(key) {
-  try {
-    var val = localStorage.getItem('fbd_' + key);
-    return val ? JSON.parse(val) : null;
-  } catch (e) { console.error('getDB error:', e); return null; }
+function getCreator() {
+  if (!sbAdmin2) {
+    sbAdmin2 = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false, storageKey: 'fbd-secondary' }
+    });
+  }
+  return sbAdmin2;
+}
+
+// ============================================
+// UTILITAIRES
+// ============================================
+function esc(s) {
+  return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function alertBox(cls, icon, html) {
+  return '<div class="alert ' + cls + '"><i class="fas fa-' + icon + '"></i><div>' + html + '</div></div>';
+}
+
+function isNetErr(e) {
+  if (!e) return false;
+  var m = String(e.message || e).toLowerCase();
+  return e.name === 'AuthRetryableFetchError' || m.indexOf('failed to fetch') > -1 || m.indexOf('networkerror') > -1 || m.indexOf('network request failed') > -1 || m.indexOf('load failed') > -1 || m.indexOf('fetch') > -1 && m.indexOf('error') > -1 && !e.code;
+}
+
+var MSG_NET = "Problème de connexion internet. Vérifiez votre réseau puis réessayez.";
+
+function authMsg(err) {
+  if (isNetErr(err)) return MSG_NET;
+  var m = String(err.message || '').toLowerCase();
+  var c = err.code || '';
+  if (c === 'user_already_exists' || m.indexOf('already registered') > -1 || m.indexOf('already been registered') > -1) return "Cet email est déjà utilisé. Connectez-vous avec votre compte existant.";
+  if (c === 'weak_password' || (m.indexOf('password') > -1 && m.indexOf('at least') > -1)) return "Mot de passe trop court (minimum 6 caractères).";
+  if (c === 'over_email_send_rate_limit' || c === 'over_request_rate_limit' || err.status === 429) return "Trop de tentatives. Patientez quelques minutes puis réessayez.";
+  if (c === 'email_address_invalid' || m.indexOf('invalid email') > -1) return "Adresse email invalide.";
+  if (c === 'signup_disabled') return "Les inscriptions sont désactivées dans Supabase.";
+  return "Erreur: " + (err.message || 'inconnue');
+}
+
+function loginMsg(err) {
+  if (isNetErr(err)) return MSG_NET;
+  var m = String(err.message || '').toLowerCase();
+  var c = err.code || '';
+  if (c === 'invalid_credentials' || m.indexOf('invalid login credentials') > -1) return "Email ou mot de passe incorrect. Si vous n'avez pas encore de compte, cliquez sur « S'inscrire ».";
+  if (c === 'email_not_confirmed' || m.indexOf('not confirmed') > -1) return "Votre email n'est pas encore confirmé. Vérifiez votre boîte mail (et les spams).";
+  if (c === 'over_request_rate_limit' || err.status === 429) return "Trop de tentatives. Patientez quelques minutes puis réessayez.";
+  return "Erreur de connexion: " + (err.message || 'inconnue');
+}
+
+function setBusy(btn, busy, label) {
+  if (!btn) return;
+  if (busy) { btn.setAttribute('data-label', btn.innerHTML); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (label || 'Patientez...'); }
+  else { btn.disabled = false; if (btn.getAttribute('data-label')) btn.innerHTML = btn.getAttribute('data-label'); }
+}
+
+function noSupabase() {
+  toast('Erreur', "Supabase n'est pas chargé. Vérifiez votre connexion internet.");
 }
 
 // ============================================
@@ -577,7 +646,8 @@ function fmtPrice(n){try{return n.toLocaleString('fr-FR')}catch(e){return n.toSt
 function fmtDate(d){if(!d)return'—';try{var dt=new Date(d);return dt.toLocaleDateString('fr-FR')+' '+dt.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}catch(e){return d}}
 function fmtDateShort(d){if(!d)return'—';try{return new Date(d).toLocaleDateString('fr-FR')}catch(e){return d}}
 function waL(m){return"https://wa.me/"+WA+"?text="+encodeURIComponent(m)}
-function getSiteUrl(){try{var h=window.location.href;if(h&&h.indexOf('http')===0)return h.split('#')[0].split('?')[0]}catch(e){}return"https://votre-site.com"}
+function waTo(phone,m){var d=String(phone||'').replace(/\D/g,'');return d?("https://wa.me/"+d+"?text="+encodeURIComponent(m)):waL(m)}
+function studentLabel(no){var n=parseInt(no,10);if(isNaN(n))return'—';return'USR_'+('00'+n).slice(-3)}
 
 function statusBadge(st){
   var map={pending:['badge-pending',' En attente'],active:['badge-active',' Actif'],rejected:['badge-rejected',' Refusé'],disabled:['badge-disabled',' Désactivé']};
@@ -586,87 +656,53 @@ function statusBadge(st){
 }
 
 // ============================================
-// INITIALISATION
+// ÉTAT EN MÉMOIRE (la vérité est dans Supabase)
 // ============================================
-function initDB() {
-  var existingUsers = getDB('users');
-  
-  if (!existingUsers || !Array.isArray(existingUsers)) {
-    var users = [
-      {
-        id: "USR_001",
-        name: "Jean Dupont",
-        email: "jean@gmail.com",
-        password: "password123",
-        accessCode: "0102030405",
-        registeredAt: "2026-01-15",
-        course: "ia",
-        progress: {completed: [], lastVideo: 0, lastActivity: null},
-        status: "active",
-        lastLogin: null
-      },
-      {
-        id: "USR_002",
-        name: "Jérôme Elie",
-        email: "eliejerome219@gmail.com",
-        password: "password123",
-        accessCode: "0102030405",
-        registeredAt: "2026-09-03",
-        course: "oratoire",
-        progress: {completed: [], lastVideo: 0, lastActivity: null},
-        status: "active",
-        lastLogin: null
-      },
-      {
-        id: "USR_ADMIN",
-        name: "Administrateur",
-        email: "admin@fbd.com",
-        password: "admin1234",
-        accessCode: "ADMIN",
-        registeredAt: "2026-01-01",
-        course: null,
-        progress: {completed: [], lastVideo: 0, lastActivity: null},
-        status: "active",
-        lastLogin: null,
-        isAdmin: true
-      }
-    ];
-    setDB('users', users);
-    return users;
-  }
-  return existingUsers;
+var ME = null;        // { id, email, profile, progress }
+var STUDENTS = [];    // liste fusionnée (admin seulement)
+var currentCourse = null;
+var currentModule = 0;
+
+var EMPTY_PROGRESS = function(){ return {completed: [], last_video: 0, last_activity: null, last_login: null}; };
+
+async function fetchMine(uid) {
+  var p = await sb.from('profiles').select('*').eq('id', uid).maybeSingle();
+  if (p.error) throw p.error;
+  var g = await sb.from('student_progress').select('*').eq('user_id', uid).maybeSingle();
+  if (g.error) throw g.error;
+  return { profile: p.data, progress: g.data || EMPTY_PROGRESS() };
 }
 
-// ============================================
-// SESSION
-// ============================================
-var SESSION_KEY = 'fbd_session';
-
-function getSession() {
-  try {
-    var s = localStorage.getItem(SESSION_KEY);
-    return s ? JSON.parse(s) : null;
-  } catch (e) { return null; }
+async function loadStudents() {
+  var p = await sb.from('profiles').select('*').eq('role', 'student').order('student_no', {ascending: true});
+  if (p.error) throw p.error;
+  var g = await sb.from('student_progress').select('*');
+  if (g.error) throw g.error;
+  var map = {};
+  (g.data || []).forEach(function(r){ map[r.user_id] = r; });
+  STUDENTS = (p.data || []).map(function(pr){
+    var pg = map[pr.id] || EMPTY_PROGRESS();
+    return {
+      id: pr.id, no: pr.student_no, name: pr.name, email: pr.email, phone: pr.phone,
+      course: pr.course, accessCode: pr.access_code, status: pr.status, createdAt: pr.created_at,
+      completed: pg.completed || [], lastVideo: pg.last_video || 0,
+      lastActivity: pg.last_activity, lastLogin: pg.last_login
+    };
+  });
 }
 
-function setSession(user) {
-  try { localStorage.setItem(SESSION_KEY, JSON.stringify(user)); }
-  catch (e) { console.error('setSession error:', e); }
-}
-
-function clearSession() {
-  try { localStorage.removeItem(SESSION_KEY); }
-  catch (e) { console.error('clearSession error:', e); }
-}
+function findStudent(id){for(var i=0;i<STUDENTS.length;i++){if(STUDENTS[i].id===id)return STUDENTS[i]}return null}
 
 // ============================================
 // NAVIGATION
 // ============================================
-var currentCourse = null;
-var currentModule = 0;
-
 function go(pg) {
   try {
+    if ((pg === 'dashboard' || pg === 'player') && !ME) { pg = 'home'; }
+    if (pg === 'admin' && (!ME || !ME.profile || ME.profile.role !== 'admin')) {
+      pg = 'home';
+      toast('Accès refusé', 'Cette page est réservée à l\'administrateur.');
+    }
     var pages = document.querySelectorAll('.page');
     for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
     var t = document.getElementById('page-' + pg);
@@ -710,16 +746,10 @@ function renderCatalogue() {
 // DASHBOARD ÉTUDIANT
 // ============================================
 function renderDashboard() {
-  var session = getSession();
-  if (!session) { go('home'); return; }
-  
-  var users = getDB('users') || [];
-  var u = null;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === session.userId) { u = users[i]; break; }
-  }
-  if (!u) { clearSession(); go('home'); return; }
-  
+  if (!ME) { go('home'); return; }
+  var u = ME.profile;
+  var pg = ME.progress || EMPTY_PROGRESS();
+
   var banner = document.getElementById('dashStatusBanner');
   if (u.status === 'pending') {
     banner.innerHTML = '<div class="alert alert-warn" style="margin-bottom:20px"><i class="fas fa-hourglass-half"></i><div><strong>Inscription en attente de validation</strong><div style="font-size:13px;margin-top:4px">Votre demande est en cours d\'examen par l\'administration.</div></div></div>';
@@ -730,19 +760,19 @@ function renderDashboard() {
   } else {
     banner.innerHTML = '';
   }
-  
-  document.getElementById('dashName').textContent = u.name.split(' ')[0].toUpperCase();
-  document.getElementById('dashSince').textContent = fmtDateShort(u.registeredAt);
-  document.getElementById('dashLastConn').textContent = fmtDate(u.lastLogin);
-  document.getElementById('dashLastAct').textContent = fmtDate(u.progress && u.progress.lastActivity ? u.progress.lastActivity : null);
+
+  document.getElementById('dashName').textContent = String(u.name || '').split(' ')[0].toUpperCase();
+  document.getElementById('dashSince').textContent = fmtDateShort(u.created_at);
+  document.getElementById('dashLastConn').textContent = fmtDate(pg.last_login);
+  document.getElementById('dashLastAct').textContent = fmtDate(pg.last_activity);
   var cb = document.getElementById('dashCodeBig');
-  if (cb) cb.textContent = u.accessCode || '—';
-  
+  if (cb) cb.textContent = u.access_code || '—';
+
   var course = getCourse(u.course);
   var totalModules = course ? course.m : 0;
-  var completed = (u.progress && u.progress.completed) ? u.progress.completed.length : 0;
+  var completed = pg.completed ? pg.completed.length : 0;
   var pc = totalModules ? Math.round(completed / totalModules * 100) : 0;
-  
+
   document.getElementById('dashCount').textContent = course ? '1' : '0';
   document.getElementById('dashPercent').textContent = pc + '%';
   setTimeout(function() {
@@ -751,9 +781,9 @@ function renderDashboard() {
   }, 100);
   document.getElementById('dashDone').textContent = completed + ' modules';
   document.getElementById('dashTotal').textContent = totalModules + ' modules';
-  
-  document.getElementById('dashStats').innerHTML = '<div class="dash-stat"><i class="fas fa-graduation-cap"></i><strong>' + (course ? '1' : '0') + '</strong><span>Formation</span></div><div class="dash-stat"><i class="fas fa-check-circle"></i><strong>' + completed + '</strong><span>Terminés</span></div><div class="dash-stat"><i class="fas fa-hourglass-half"></i><strong>' + (totalModules - completed) + '</strong><span>Restants</span></div><div class="dash-stat"><i class="fas fa-chart-line"></i><strong>' + pc + '%</strong><span>Progression</span></div>';
-  
+
+  document.getElementById('dashStats').innerHTML = '<div class="dash-stat"><i class="fas fa-graduation-cap"></i><strong>' + (course ? '1' : '0') + '</strong><span>Formation</span></div><div class="dash-stat"><i class="fas fa-check-circle"></i><strong>' + completed + '</strong><span>Terminés</span></div><div class="dash-stat"><i class="fas fa-hourglass-half"></i><strong>' + Math.max(totalModules - completed, 0) + '</strong><span>Restants</span></div><div class="dash-stat"><i class="fas fa-chart-line"></i><strong>' + pc + '%</strong><span>Progression</span></div>';
+
   var cH = '';
   if (course) {
     cH = '<div class="course-enrolled" onclick="openCourse(\'' + course.id + '\')"><div class="course-enrolled-info"><strong>' + course.t + '</strong><span>' + course.c + ' • ' + completed + '/' + totalModules + ' modules</span><div class="progress" style="margin-top:8px"><div class="progress-bar" style="width:' + pc + '%"></div></div></div><button class="btn btn-primary btn-sm">' + (completed >= totalModules ? '✓ TERMINÉ' : 'CONTINUER') + '</button></div>';
@@ -767,13 +797,8 @@ function renderDashboard() {
 // PLAYER VIDÉO
 // ============================================
 function openCourse(cid) {
-  var session = getSession();
-  if (!session) { go('home'); return; }
-  var users = getDB('users') || [];
-  var u = null;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === session.userId) { u = users[i]; break; }
-  }
+  if (!ME) { go('home'); return; }
+  var u = ME.profile;
   if (!u || u.status !== 'active') {
     toast('Accès refusé', 'Votre compte n\'est pas actif.');
     return;
@@ -784,38 +809,30 @@ function openCourse(cid) {
     toast('Accès refusé', 'Vous n\'êtes pas inscrit à cette formation.');
     return;
   }
-  
+
   currentCourse = course;
-  currentModule = u.progress && u.progress.lastVideo ? u.progress.lastVideo : 0;
+  currentModule = ME.progress && ME.progress.last_video ? ME.progress.last_video : 0;
+  if (currentModule >= course.m) currentModule = 0;
   go('player');
   renderPlayer();
 }
 
 function renderPlayer() {
-  if (!currentCourse) return;
-  
+  if (!currentCourse || !ME) return;
+
   document.getElementById('playerTitle').textContent = currentCourse.t.toUpperCase();
   document.getElementById('playerSubtitle').textContent = 'Module ' + (currentModule + 1) + ' sur ' + currentCourse.m;
-  
-  var session = getSession();
-  var users = getDB('users') || [];
-  var u = null;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === session.userId) { u = users[i]; break; }
-  }
-  
-  var completed = (u && u.progress && u.progress.completed) ? u.progress.completed : [];
-  
-  // Reset video container
+
+  var completed = (ME.progress && ME.progress.completed) ? ME.progress.completed : [];
+
   var ct = document.getElementById('videoContainer');
   ct.innerHTML = '<div class="video-placeholder" onclick="playCurrentVideo()"><div class="play-btn"><i class="fas fa-play"></i></div><p>Cliquez pour lancer la vidéo</p></div>';
-  
-  // Module info
+
   var videos = currentCourse.videos || [];
   var currentVideo = videos[currentModule];
   document.getElementById('currentModuleTitle').textContent = 'Module ' + (currentModule + 1) + ' — ' + (currentVideo ? currentVideo.t : '');
   document.getElementById('currentModuleDesc').textContent = 'Regardez la vidéo puis marquez le module comme terminé pour débloquer le suivant.';
-  
+
   var mb = document.getElementById('markDoneBtn');
   if (completed.indexOf(currentModule) !== -1) {
     mb.innerHTML = '<i class="fas fa-check"></i> MODULE TERMINÉ ✓';
@@ -826,8 +843,7 @@ function renderPlayer() {
     mb.style.background = '';
     mb.style.color = '';
   }
-  
-  // Modules list
+
   var ml = document.getElementById('modulesList');
   var mh = '';
   for (var i = 0; i < currentCourse.m; i++) {
@@ -838,19 +854,19 @@ function renderPlayer() {
     if (isDone) cl += ' done';
     if (isActive) cl += ' active';
     if (isLocked) cl += ' locked';
-    
+
     var ic = isDone ? 'check' : (isLocked ? 'lock' : 'play');
     var lb = isDone ? '✓ Terminé' : (isLocked ? ' Verrouillé' : '▶ À suivre');
     var n = '0' + (i + 1);
     n = n.slice(-2);
     var vidTitle = 'Module ' + n;
     if (videos[i]) vidTitle += ' — ' + videos[i].t;
-    
+
     var oc = isLocked ? 'alert("Terminez le module précédent pour débloquer celui-ci.")' : 'openModule(' + i + ')';
-    mh += '<div class="' + cl + '" onclick="' + oc + '"><div class="mod-icon"><i class="fas fa-' + ic + '"></i></div><div class="mod-info"><strong>' + vidTitle + '</strong><span>' + lb + '</span></div></div>';
+    mh += '<div class="' + cl + '" onclick=\'' + oc + '\'><div class="mod-icon"><i class="fas fa-' + ic + '"></i></div><div class="mod-info"><strong>' + vidTitle + '</strong><span>' + lb + '</span></div></div>';
   }
   ml.innerHTML = mh;
-  
+
   var pc = Math.round(completed.length / currentCourse.m * 100);
   document.getElementById('playerPercent').textContent = pc + '%';
   setTimeout(function() {
@@ -863,10 +879,10 @@ function playCurrentVideo() {
   if (!currentCourse || !currentCourse.videos) return;
   var video = currentCourse.videos[currentModule];
   if (!video) return;
-  
+
   var ct = document.getElementById('videoContainer');
   ct.innerHTML = '<div class="video-container"><iframe src="https://drive.google.com/file/d/' + video.id + '/preview" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe></div>';
-  
+
   toast('Lecture en cours', video.t);
 }
 
@@ -876,42 +892,38 @@ function openModule(idx) {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-function markModuleDone() {
-  var session = getSession();
-  if (!session) return;
-  
-  var users = getDB('users') || [];
-  var u = null;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === session.userId) { u = users[i]; break; }
+async function markModuleDone() {
+  if (!ME || !currentCourse) return;
+  var comp = (ME.progress && ME.progress.completed ? ME.progress.completed : []).slice();
+  if (comp.indexOf(currentModule) !== -1) return;
+  comp.push(currentModule);
+  var now = new Date().toISOString();
+
+  try {
+    var r = await sb.from('student_progress').upsert(
+      {user_id: ME.id, completed: comp, last_video: currentModule, last_activity: now},
+      {onConflict: 'user_id'}
+    );
+    if (r.error) throw r.error;
+  } catch (err) {
+    toast('Erreur', isNetErr(err) ? MSG_NET : 'Progression non sauvegardée. Réessayez.');
+    return;
   }
-  if (!u) return;
-  
-  if (!u.progress) u.progress = {completed: [], lastVideo: 0, lastActivity: null};
-  if (!u.progress.completed) u.progress.completed = [];
-  
-  if (u.progress.completed.indexOf(currentModule) === -1) {
-    u.progress.completed.push(currentModule);
-    u.progress.lastVideo = currentModule;
-    u.progress.lastActivity = new Date().toISOString();
-    
-    for (var i = 0; i < users.length; i++) {
-      if (users[i].id === u.id) { users[i] = u; break; }
-    }
-    setDB('users', users);
-    
-    toast('Module terminé !', 'Progression sauvegardée.');
-    
-    // Auto-advance to next module
-    if (currentModule < currentCourse.m - 1) {
-      setTimeout(function() {
-        currentModule++;
-        renderPlayer();
-        window.scrollTo({top: 0, behavior: 'smooth'});
-      }, 1000);
-    } else {
-      toast('Félicitations !', 'Vous avez terminé tous les modules !');
-    }
+
+  ME.progress.completed = comp;
+  ME.progress.last_video = currentModule;
+  ME.progress.last_activity = now;
+  toast('Module terminé !', 'Progression sauvegardée.');
+
+  if (currentModule < currentCourse.m - 1) {
+    setTimeout(function() {
+      currentModule++;
+      renderPlayer();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }, 1000);
+  } else {
+    renderPlayer();
+    toast('Félicitations !', 'Vous avez terminé tous les modules !');
   }
 }
 
@@ -921,77 +933,79 @@ function markModuleDone() {
 function adminTab(n, b) {
   var tabs = document.querySelectorAll('.admin-tab');
   for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
-  b.classList.add('active');
+  if (b) b.classList.add('active');
   var panels = document.querySelectorAll('.admin-panel');
   for (var i = 0; i < panels.length; i++) panels[i].classList.remove('active');
   document.getElementById('panel-' + n).classList.add('active');
   if (n === 'stats') renderStats();
   if (n === 'students') renderStudentTable();
+  if (n === 'migrate') renderMigration();
 }
 
-function renderAdmin() {
-  var session = getSession();
-  if (!session) { go('home'); return; }
-  var users = getDB('users') || [];
-  var admin = null;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === session.userId && users[i].isAdmin) { admin = users[i]; break; }
+function isAdminMe() { return !!(ME && ME.profile && ME.profile.role === 'admin'); }
+
+async function renderAdmin() {
+  if (!isAdminMe()) { go('home'); return; }
+
+  var tbody = document.getElementById('studentTableBody');
+  if (tbody) tbody.innerHTML = '<tr><td colspan="10" class="loading-row"><i class="fas fa-spinner fa-spin"></i> Chargement...</td></tr>';
+
+  try {
+    await loadStudents();
+  } catch (err) {
+    console.error(err);
+    if (tbody) tbody.innerHTML = '<tr><td colspan="10"><div class="empty-state"><i class="fas fa-wifi"></i><p>' + esc(isNetErr(err) ? MSG_NET : 'Impossible de charger les étudiants: ' + (err.message || '')) + '</p></div></td></tr>';
+    return;
   }
-  if (!admin) { go('home'); return; }
-  
-  var pending = 0, active = 0, rejected = 0, disabled = 0, totalRev = 0;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].isAdmin) continue;
-    if (users[i].status === 'pending') pending++;
-    else if (users[i].status === 'active') {
+
+  var pending = 0, active = 0, totalRev = 0;
+  for (var i = 0; i < STUDENTS.length; i++) {
+    var s = STUDENTS[i];
+    if (s.status === 'pending') pending++;
+    else if (s.status === 'active') {
       active++;
-      var c = getCourse(users[i].course);
+      var c = getCourse(s.course);
       if (c) totalRev += c.p;
-    } else if (users[i].status === 'rejected') rejected++;
-    else if (users[i].status === 'disabled') disabled++;
+    }
   }
-  
-  document.getElementById('adminStats').innerHTML = '<div class="dash-stat"><i class="fas fa-users"></i><strong>' + (users.length - 1) + '</strong><span>Total étudiants</span></div><div class="dash-stat"><i class="fas fa-user-check" style="color:var(--active)"></i><strong>' + active + '</strong><span>Actifs</span></div><div class="dash-stat"><i class="fas fa-clock" style="color:var(--pending)"></i><strong>' + pending + '</strong><span>En attente</span></div><div class="dash-stat"><i class="fas fa-coins"></i><strong>' + fmtPrice(totalRev) + '</strong><span>Revenus (G)</span></div>';
-  
+
+  document.getElementById('adminStats').innerHTML = '<div class="dash-stat"><i class="fas fa-users"></i><strong>' + STUDENTS.length + '</strong><span>Total étudiants</span></div><div class="dash-stat"><i class="fas fa-user-check" style="color:var(--active)"></i><strong>' + active + '</strong><span>Actifs</span></div><div class="dash-stat"><i class="fas fa-clock" style="color:var(--pending)"></i><strong>' + pending + '</strong><span>En attente</span></div><div class="dash-stat"><i class="fas fa-coins"></i><strong>' + fmtPrice(totalRev) + '</strong><span>Revenus (G)</span></div>';
+
   renderStudentTable();
-  
+
   var sel = document.getElementById('addCourse');
   if (sel && sel.options.length <= 1) {
-    for (var i = 0; i < COURSES.length; i++) {
+    for (var j = 0; j < COURSES.length; j++) {
       var opt = document.createElement('option');
-      opt.value = COURSES[i].id;
-      opt.textContent = COURSES[i].t + ' — ' + fmtPrice(COURSES[i].p) + ' G';
+      opt.value = COURSES[j].id;
+      opt.textContent = COURSES[j].t + ' — ' + fmtPrice(COURSES[j].p) + ' G';
       sel.appendChild(opt);
     }
   }
 }
 
 function renderStudentTable() {
-  var users = getDB('users') || [];
   var tbody = document.getElementById('studentTableBody');
   if (!tbody) return;
-  
+
   var h = '';
-  var hasStudents = false;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].isAdmin) continue;
-    hasStudents = true;
-    var u = users[i];
+  for (var i = 0; i < STUDENTS.length; i++) {
+    var u = STUDENTS[i];
     var course = getCourse(u.course);
     var courseName = course ? course.t : '—';
     var totalModules = course ? course.m : 0;
-    var completed = (u.progress && u.progress.completed) ? u.progress.completed.length : 0;
+    var completed = u.completed ? u.completed.length : 0;
     var pc = totalModules ? Math.round(completed / totalModules * 100) : 0;
     var statusClass = u.status === 'active' ? 'badge-active' : u.status === 'rejected' ? 'badge-rejected' : u.status === 'disabled' ? 'badge-disabled' : 'badge-pending';
     var statusLabel = u.status === 'active' ? 'Actif' : u.status === 'rejected' ? 'Refusé' : u.status === 'disabled' ? 'Désactivé' : 'En attente';
-    
+
     h += '<tr>';
-    h += '<td><strong>' + u.id + '</strong></td>';
-    h += '<td><strong>' + u.name + '</strong></td>';
-    h += '<td>' + (u.email || '—') + '</td>';
-    h += '<td>' + courseName + '</td>';
-    h += '<td><span class="code-cell">' + (u.accessCode || '—') + '</span></td>';
-    h += '<td>' + fmtDateShort(u.registeredAt) + '</td>';
+    h += '<td><strong>' + studentLabel(u.no) + '</strong></td>';
+    h += '<td><strong>' + esc(u.name) + '</strong></td>';
+    h += '<td>' + esc(u.email || '—') + '</td>';
+    h += '<td>' + esc(courseName) + '</td>';
+    h += '<td><span class="code-cell">' + esc(u.accessCode || '—') + '</span></td>';
+    h += '<td>' + fmtDateShort(u.createdAt) + '</td>';
     h += '<td><div class="progress" style="margin:0;width:80px;display:inline-block;vertical-align:middle"><div class="progress-bar" style="width:' + pc + '%"></div></div> <strong style="font-size:12px">' + pc + '%</strong></td>';
     h += '<td style="font-size:11px;color:var(--muted)">' + fmtDate(u.lastLogin) + '</td>';
     h += '<td><span class="badge ' + statusClass + '">' + statusLabel + '</span></td>';
@@ -1007,50 +1021,46 @@ function renderStudentTable() {
     h += '</div></td>';
     h += '</tr>';
   }
-  
-  if (!hasStudents) {
+
+  if (!STUDENTS.length) {
     h = '<tr><td colspan="10"><div class="empty-state"><i class="fas fa-users"></i><p>Aucun étudiant enregistré.</p></div></td></tr>';
   }
   tbody.innerHTML = h;
 }
 
 function renderStats() {
-  var users = getDB('users') || [];
   var pending = 0, active = 0, rejected = 0, disabled = 0, totalRev = 0;
   var byCourse = {};
   for (var i = 0; i < COURSES.length; i++) byCourse[COURSES[i].id] = {n: COURSES[i].t, c: 0, rev: 0};
-  
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].isAdmin) continue;
-    if (users[i].status === 'pending') pending++;
-    else if (users[i].status === 'active') {
+
+  for (var i = 0; i < STUDENTS.length; i++) {
+    var s = STUDENTS[i];
+    if (s.status === 'pending') pending++;
+    else if (s.status === 'active') {
       active++;
-      var c = getCourse(users[i].course);
+      var c = getCourse(s.course);
       if (c) {
         totalRev += c.p;
-        if (byCourse[users[i].course]) { byCourse[users[i].course].c++; byCourse[users[i].course].rev += c.p; }
+        if (byCourse[s.course]) { byCourse[s.course].c++; byCourse[s.course].rev += c.p; }
       }
-    } else if (users[i].status === 'rejected') rejected++;
-    else if (users[i].status === 'disabled') disabled++;
+    } else if (s.status === 'rejected') rejected++;
+    else if (s.status === 'disabled') disabled++;
   }
-  
-  var total = users.length - 1;
+
+  var total = STUDENTS.length;
   var avgProg = 0, countWithProg = 0;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].isAdmin) continue;
-    if (users[i].course) {
-      var cc = getCourse(users[i].course);
-      if (cc) {
-        var tm = cc.m;
-        var dm = (users[i].progress && users[i].progress.completed) ? users[i].progress.completed.length : 0;
-        if (tm > 0) { avgProg += Math.round(dm / tm * 100); countWithProg++; }
-      }
+  for (var i = 0; i < STUDENTS.length; i++) {
+    var cc = getCourse(STUDENTS[i].course);
+    if (cc && cc.m > 0) {
+      var dm = STUDENTS[i].completed ? STUDENTS[i].completed.length : 0;
+      avgProg += Math.round(dm / cc.m * 100);
+      countWithProg++;
     }
   }
   avgProg = countWithProg ? Math.round(avgProg / countWithProg) : 0;
-  
+
   document.getElementById('statsGrid').innerHTML = '<div class="stat-mini"><strong>' + total + '</strong><span>Total étudiants</span></div><div class="stat-mini"><strong>' + active + '</strong><span>Actifs</span></div><div class="stat-mini"><strong>' + pending + '</strong><span>En attente</span></div><div class="stat-mini"><strong>' + rejected + '</strong><span>Refusés</span></div><div class="stat-mini"><strong>' + disabled + '</strong><span>Désactivés</span></div><div class="stat-mini"><strong>' + avgProg + '%</strong><span>Progression moy.</span></div>';
-  
+
   var chH = '';
   var maxC = 1;
   for (var k in byCourse) { if (byCourse[k].c > maxC) maxC = byCourse[k].c; }
@@ -1064,351 +1074,487 @@ function renderStats() {
 }
 
 // ============================================
-// CRUD ÉTUDIANTS
+// CRUD ÉTUDIANTS (admin)
 // ============================================
-function generateUserId() {
-  var users = getDB('users') || [];
-  var maxNum = 0;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id && users[i].id.indexOf('USR_') === 0) {
-      var num = parseInt(users[i].id.replace('USR_', ''), 10);
-      if (!isNaN(num) && num > maxNum) maxNum = num;
-    }
+function codeTaken(code, exceptId) {
+  var up = String(code || '').toUpperCase();
+  if (isAdminMe() && ME.profile.access_code && ME.profile.access_code.toUpperCase() === up && ME.id !== exceptId) return true;
+  for (var i = 0; i < STUDENTS.length; i++) {
+    if (STUDENTS[i].id !== exceptId && STUDENTS[i].accessCode && STUDENTS[i].accessCode.toUpperCase() === up) return true;
   }
-  var nextNum = maxNum + 1;
-  var pad = nextNum < 10 ? '00' : nextNum < 100 ? '0' : '';
-  return 'USR_' + pad + nextNum;
+  return false;
 }
 
-function addStudent(e) {
+async function addStudent(e) {
   if (e) e.preventDefault();
   var aB = document.getElementById('addAlert');
-  
+  var btn = document.getElementById('addBtn');
+  if (!sb) { noSupabase(); return; }
+  if (!isAdminMe()) { toast('Accès refusé', 'Réservé à l\'administrateur.'); return; }
+
   var name = document.getElementById('addName').value.trim();
   var email = document.getElementById('addEmail').value.trim().toLowerCase();
   var password = document.getElementById('addPassword').value;
   var accessCode = document.getElementById('addCode').value.trim().toUpperCase();
   var course = document.getElementById('addCourse').value;
   var status = document.getElementById('addStatus').value;
-  
+
   if (!name || !email || !password || !accessCode || !course) {
-    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Tous les champs obligatoires doivent être remplis.</div>';
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Tous les champs obligatoires doivent être remplis.');
     return;
   }
-  
-  var users = getDB('users') || [];
-  
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].email && users[i].email.toLowerCase() === email) {
-      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Cet email est déjà utilisé.</div>';
+  if (password.length < 6) {
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Le mot de passe doit contenir au moins 6 caractères.');
+    return;
+  }
+  for (var i = 0; i < STUDENTS.length; i++) {
+    if (STUDENTS[i].email && STUDENTS[i].email.toLowerCase() === email) {
+      aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Cet email est déjà utilisé.');
       return;
     }
   }
-  
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].accessCode && users[i].accessCode.toUpperCase() === accessCode) {
-      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Ce code d\'accès est déjà utilisé.</div>';
+  if (codeTaken(accessCode, null)) {
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Ce code d\'accès est déjà utilisé.');
+    return;
+  }
+
+  setBusy(btn, true, 'Création...');
+  aB.innerHTML = '';
+  try {
+    var cr = getCreator();
+    var r = await cr.auth.signUp({email: email, password: password, options: {data: {name: name, course: course}}});
+    if (r.error) { aB.innerHTML = alertBox('alert-err', 'exclamation-circle', esc(authMsg(r.error))); return; }
+    if (!r.data.user || (r.data.user.identities && r.data.user.identities.length === 0)) {
+      aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Cet email est déjà utilisé.');
       return;
     }
+    var uid = r.data.user.id;
+    try { await cr.auth.signOut({scope: 'local'}); } catch (x) {}
+
+    var up = await sb.from('profiles').update({name: name, course: course, access_code: accessCode, status: status}).eq('id', uid).select();
+    if (up.error) {
+      if (up.error.code === '23505') {
+        aB.innerHTML = alertBox('alert-warn', 'exclamation-triangle', 'Compte créé, mais ce code d\'accès est déjà pris. Ouvrez « Modifier » pour donner un autre code.');
+      } else {
+        aB.innerHTML = alertBox('alert-warn', 'exclamation-triangle', 'Compte créé, mais la mise à jour du profil a échoué: ' + esc(up.error.message));
+      }
+      await loadStudents();
+      return;
+    }
+
+    aB.innerHTML = alertBox('alert-ok', 'check-circle', 'Étudiant ajouté avec succès !');
+    document.getElementById('addName').value = '';
+    document.getElementById('addEmail').value = '';
+    document.getElementById('addPassword').value = '';
+    document.getElementById('addCode').value = '';
+    document.getElementById('addCourse').value = '';
+    document.getElementById('addStatus').value = 'active';
+    toast('Étudiant ajouté !', 'Code: ' + accessCode);
+
+    await loadStudents();
+    renderAdmin();
+    setTimeout(function() {
+      aB.innerHTML = '';
+      adminTab('students', document.querySelector('.admin-tab'));
+    }, 1500);
+  } catch (err) {
+    console.error(err);
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', esc(isNetErr(err) ? MSG_NET : 'Erreur: ' + (err.message || err)));
+  } finally {
+    setBusy(btn, false);
   }
-  
-  var newStudent = {
-    id: generateUserId(),
-    name: name,
-    email: email,
-    password: password,
-    accessCode: accessCode,
-    registeredAt: new Date().toISOString().split('T')[0],
-    course: course,
-    progress: {completed: [], lastVideo: 0, lastActivity: null},
-    status: status,
-    lastLogin: null
-  };
-  
-  users.push(newStudent);
-  setDB('users', users);
-  
-  if (aB) aB.innerHTML = '<div class="alert alert-ok"><i class="fas fa-check-circle"></i> Étudiant ajouté avec succès ! ID: ' + newStudent.id + '</div>';
-  
-  document.getElementById('addName').value = '';
-  document.getElementById('addEmail').value = '';
-  document.getElementById('addPassword').value = '';
-  document.getElementById('addCode').value = '';
-  document.getElementById('addCourse').value = '';
-  document.getElementById('addStatus').value = 'active';
-  
-  toast('Étudiant ajouté !', 'ID: ' + newStudent.id + ' - Code: ' + accessCode);
-  
-  setTimeout(function() {
-    adminTab('students', document.querySelector('.admin-tab'));
-  }, 1500);
 }
 
 function viewStudent(id) {
-  var users = getDB('users') || [];
-  var u = null;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === id) { u = users[i]; break; }
-  }
+  var u = findStudent(id);
   if (!u) return;
-  
+
   var course = getCourse(u.course);
   var courseName = course ? course.t : '—';
   var totalModules = course ? course.m : 0;
-  var completed = (u.progress && u.progress.completed) ? u.progress.completed.length : 0;
+  var completed = u.completed ? u.completed.length : 0;
   var pc = totalModules ? Math.round(completed / totalModules * 100) : 0;
-  
+
   var h = '<button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>';
-  h += '<div class="detail-header"><h2 style="font-size:22px;margin-bottom:8px">' + u.name + '</h2><div>' + statusBadge(u.status) + '</div></div>';
-  h += '<div class="detail-row"><strong>ID</strong><span>' + u.id + '</span></div>';
-  h += '<div class="detail-row"><strong>Nom complet</strong><span>' + u.name + '</span></div>';
-  h += '<div class="detail-row"><strong>Email</strong><span>' + (u.email || '—') + '</span></div>';
-  h += '<div class="detail-row"><strong>Formation</strong><span>' + courseName + '</span></div>';
-  h += '<div class="detail-row"><strong>Code d\'accès</strong><span style="font-family:monospace;background:var(--ink);color:var(--gold-light);padding:4px 10px;border-radius:6px">' + (u.accessCode || '—') + '</span></div>';
-  h += '<div class="detail-row"><strong>Date d\'inscription</strong><span>' + fmtDateShort(u.registeredAt) + '</span></div>';
+  h += '<div class="detail-header"><h2 style="font-size:22px;margin-bottom:8px">' + esc(u.name) + '</h2><div>' + statusBadge(u.status) + '</div></div>';
+  h += '<div class="detail-row"><strong>ID</strong><span>' + studentLabel(u.no) + '</span></div>';
+  h += '<div class="detail-row"><strong>Nom complet</strong><span>' + esc(u.name) + '</span></div>';
+  h += '<div class="detail-row"><strong>Email</strong><span>' + esc(u.email || '—') + '</span></div>';
+  h += '<div class="detail-row"><strong>WhatsApp</strong><span>' + esc(u.phone || '—') + '</span></div>';
+  h += '<div class="detail-row"><strong>Formation</strong><span>' + esc(courseName) + '</span></div>';
+  h += '<div class="detail-row"><strong>Code d\'accès</strong><span style="font-family:monospace;background:var(--ink);color:var(--gold-light);padding:4px 10px;border-radius:6px">' + esc(u.accessCode || '—') + '</span></div>';
+  h += '<div class="detail-row"><strong>Date d\'inscription</strong><span>' + fmtDateShort(u.createdAt) + '</span></div>';
   h += '<div class="detail-row"><strong>Dernière connexion</strong><span>' + fmtDate(u.lastLogin) + '</span></div>';
-  h += '<div class="detail-row"><strong>Dernière activité</strong><span>' + fmtDate(u.progress && u.progress.lastActivity ? u.progress.lastActivity : null) + '</span></div>';
+  h += '<div class="detail-row"><strong>Dernière activité</strong><span>' + fmtDate(u.lastActivity) + '</span></div>';
   h += '<div class="detail-row"><strong>Vidéos terminées</strong><span>' + completed + ' / ' + totalModules + '</span></div>';
   h += '<div class="detail-row"><strong>Progression</strong><span><strong style="color:var(--gold-2)">' + pc + '%</strong></span></div>';
   h += '<div class="progress" style="margin:16px 0"><div class="progress-bar" style="width:' + pc + '%"></div></div>';
-  
+
   h += '<div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap">';
-  h += '<button class="btn btn-outline btn-sm" onclick="editStudent(\'' + u.id + '\');closeModal()"><i class="fas fa-edit"></i> Modifier</button>';
-  h += '<a href="' + waL("Bonjour " + u.name + " ! Votre code: " + (u.accessCode || '—')) + '" target="_blank" class="btn btn-wa btn-sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>';
+  h += '<button class="btn btn-outline btn-sm" onclick="editStudent(\'' + u.id + '\')"><i class="fas fa-edit"></i> Modifier</button>';
+  h += '<a href="' + esc(waTo(u.phone, "Bonjour " + u.name + " ! Votre code d'accès: " + (u.accessCode || '—'))) + '" target="_blank" rel="noopener" class="btn btn-wa btn-sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>';
   h += '</div>';
-  
-  var ov = document.getElementById('modalOverlay');
-  var ct = document.getElementById('modalContent');
-  ct.innerHTML = h;
-  ov.classList.add('open');
+
+  document.getElementById('modalContent').innerHTML = h;
+  document.getElementById('modalOverlay').classList.add('open');
 }
 
 function editStudent(id) {
-  var users = getDB('users') || [];
-  var u = null;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === id) { u = users[i]; break; }
-  }
+  var u = findStudent(id);
   if (!u) return;
-  
-  var courseOptions = '';
+
+  var courseOptions = '<option value="">— Aucune —</option>';
   for (var i = 0; i < COURSES.length; i++) {
     var sel = (u.course === COURSES[i].id) ? ' selected' : '';
     courseOptions += '<option value="' + COURSES[i].id + '"' + sel + '>' + COURSES[i].t + '</option>';
   }
-  
+
   var h = '<button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>';
   h += '<h2>MODIFIER L\'ÉTUDIANT</h2>';
-  h += '<p class="sub">ID: ' + u.id + '</p>';
+  h += '<p class="sub">ID: ' + studentLabel(u.no) + '</p>';
   h += '<div id="editAlert"></div>';
   h += '<form onsubmit="saveStudent(event,\'' + u.id + '\')">';
-  h += '<div class="form-group"><label>Nom complet *</label><input type="text" id="editName" value="' + u.name + '" required></div>';
-  h += '<div class="form-group"><label>Email *</label><input type="email" id="editEmail" value="' + (u.email || '') + '" required></div>';
-  h += '<div class="form-group"><label>Mot de passe *</label><input type="text" id="editPassword" value="' + u.password + '" required></div>';
-  h += '<div class="form-group"><label>Code d\'accès *</label><input type="text" id="editCode" value="' + (u.accessCode || '') + '" required style="font-family:monospace;font-weight:700;letter-spacing:2px"></div>';
-  h += '<div class="form-row"><div class="form-group"><label>Formation *</label><select id="editCourse" required>' + courseOptions + '</select></div>';
+  h += '<div class="form-group"><label>Nom complet *</label><input type="text" id="editName" value="' + esc(u.name) + '" required></div>';
+  h += '<div class="form-group"><label>Email (non modifiable)</label><input type="email" id="editEmail" value="' + esc(u.email || '') + '" readonly></div>';
+  h += '<div class="form-group"><label>Code d\'accès</label><input type="text" id="editCode" value="' + esc(u.accessCode || '') + '" style="font-family:monospace;font-weight:700;letter-spacing:2px"></div>';
+  h += '<div class="form-row"><div class="form-group"><label>Formation</label><select id="editCourse">' + courseOptions + '</select></div>';
   h += '<div class="form-group"><label>Statut</label><select id="editStatus"><option value="active"' + (u.status === 'active' ? ' selected' : '') + '>Actif</option><option value="pending"' + (u.status === 'pending' ? ' selected' : '') + '>En attente</option><option value="rejected"' + (u.status === 'rejected' ? ' selected' : '') + '>Refusé</option><option value="disabled"' + (u.status === 'disabled' ? ' selected' : '') + '>Désactivé</option></select></div></div>';
-  h += '<button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-save"></i> ENREGISTRER LES MODIFICATIONS</button>';
+  h += '<button type="submit" class="btn btn-primary btn-lg" id="editBtn"><i class="fas fa-save"></i> ENREGISTRER LES MODIFICATIONS</button>';
   h += '</form>';
-  
-  var ov = document.getElementById('modalOverlay');
-  var ct = document.getElementById('modalContent');
-  ct.innerHTML = h;
-  ov.classList.add('open');
+
+  document.getElementById('modalContent').innerHTML = h;
+  document.getElementById('modalOverlay').classList.add('open');
 }
 
-function saveStudent(e, id) {
+async function saveStudent(e, id) {
   if (e) e.preventDefault();
   var aB = document.getElementById('editAlert');
-  
+  var btn = document.getElementById('editBtn');
+  if (!isAdminMe()) return;
+
   var name = document.getElementById('editName').value.trim();
-  var email = document.getElementById('editEmail').value.trim().toLowerCase();
-  var password = document.getElementById('editPassword').value;
   var accessCode = document.getElementById('editCode').value.trim().toUpperCase();
   var course = document.getElementById('editCourse').value;
   var status = document.getElementById('editStatus').value;
-  
-  var users = getDB('users') || [];
-  
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id !== id && users[i].email && users[i].email.toLowerCase() === email) {
-      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Cet email est déjà utilisé.</div>';
+
+  if (!name) { aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Le nom est obligatoire.'); return; }
+  if (status === 'active' && !accessCode) {
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Un étudiant actif doit avoir un code d\'accès.');
+    return;
+  }
+  if (accessCode && codeTaken(accessCode, id)) {
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Ce code d\'accès est déjà utilisé.');
+    return;
+  }
+
+  setBusy(btn, true, 'Enregistrement...');
+  try {
+    var r = await sb.from('profiles').update({
+      name: name, access_code: accessCode || null, course: course || null, status: status
+    }).eq('id', id).select();
+    if (r.error) {
+      if (r.error.code === '23505') aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Ce code d\'accès est déjà utilisé.');
+      else aB.innerHTML = alertBox('alert-err', 'exclamation-circle', esc(isNetErr(r.error) ? MSG_NET : r.error.message));
       return;
     }
-  }
-  
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id !== id && users[i].accessCode && users[i].accessCode.toUpperCase() === accessCode) {
-      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Ce code d\'accès est déjà utilisé.</div>';
+    if (!r.data || !r.data.length) {
+      aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Modification refusée (droits insuffisants ou étudiant introuvable).');
       return;
     }
+    aB.innerHTML = alertBox('alert-ok', 'check-circle', 'Modifications enregistrées avec succès.');
+    toast('Étudiant modifié', 'Les changements ont été sauvegardés.');
+    await loadStudents();
+    setTimeout(function() {
+      closeModal();
+      renderAdmin();
+    }, 1000);
+  } catch (err) {
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', esc(isNetErr(err) ? MSG_NET : 'Erreur: ' + (err.message || err)));
+  } finally {
+    setBusy(btn, false);
   }
-  
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === id) {
-      users[i].name = name;
-      users[i].email = email;
-      users[i].password = password;
-      users[i].accessCode = accessCode;
-      users[i].course = course;
-      users[i].status = status;
-      break;
-    }
-  }
-  
-  setDB('users', users);
-  if (aB) aB.innerHTML = '<div class="alert alert-ok"><i class="fas fa-check-circle"></i> Modifications enregistrées avec succès.</div>';
-  toast('Étudiant modifié', 'Les changements ont été sauvegardés.');
-  setTimeout(function() {
-    closeModal();
-    renderStudentTable();
-    renderAdmin();
-  }, 1500);
 }
 
-function toggleStudentStatus(id, newStatus) {
+async function toggleStudentStatus(id, newStatus) {
   var label = newStatus === 'active' ? 'réactiver' : 'désactiver';
   if (!confirm('Voulez-vous ' + label + ' cet étudiant ?')) return;
-  
-  var users = getDB('users') || [];
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === id) {
-      users[i].status = newStatus;
-      break;
-    }
+  if (!isAdminMe()) return;
+  try {
+    var r = await sb.from('profiles').update({status: newStatus}).eq('id', id).select();
+    if (r.error) throw r.error;
+    if (!r.data || !r.data.length) throw new Error('Modification refusée.');
+    toast('Statut modifié', 'L\'étudiant a été ' + (newStatus === 'active' ? 'réactivé' : 'désactivé') + '.');
+    renderAdmin();
+  } catch (err) {
+    toast('Erreur', isNetErr(err) ? MSG_NET : (err.message || 'Échec'));
   }
-  setDB('users', users);
-  toast('Statut modifié', 'L\'étudiant a été ' + label + '.');
-  renderStudentTable();
-  renderAdmin();
 }
 
-function deleteStudent(id) {
+async function deleteStudent(id) {
   if (!confirm('Supprimer définitivement cet étudiant ? Cette action est irréversible.')) return;
-  var users = getDB('users') || [];
-  var filtered = [];
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id !== id) filtered.push(users[i]);
+  if (!isAdminMe()) return;
+  try {
+    var r = await sb.rpc('admin_delete_student', {target: id});
+    if (r.error) throw r.error;
+    toast('Étudiant supprimé', 'L\'étudiant a été retiré.');
+    renderAdmin();
+  } catch (err) {
+    toast('Erreur', isNetErr(err) ? MSG_NET : (err.message || 'Échec de la suppression'));
   }
-  setDB('users', filtered);
-  toast('Étudiant supprimé', 'L\'étudiant a été retiré.');
-  renderStudentTable();
-  renderAdmin();
 }
 
 // ============================================
-// AUTHENTIFICATION
+// MIGRATION localStorage → Supabase (admin)
 // ============================================
-function doLogin(e) {
+var OLD_USERS = [];
+
+function readOldUsers() {
+  try {
+    var v = localStorage.getItem('fbd_users');
+    var arr = v ? JSON.parse(v) : [];
+    return Array.isArray(arr) ? arr.filter(function(u){ return u && !u.isAdmin && u.email; }) : [];
+  } catch (e) { return []; }
+}
+
+function renderMigration() {
+  OLD_USERS = readOldUsers();
+  var l = document.getElementById('migList');
+  var a = document.getElementById('migActions');
+  if (!OLD_USERS.length) {
+    l.innerHTML = '<div class="empty-state"><i class="fas fa-database"></i><p>Aucun ancien compte trouvé dans ce navigateur.</p></div>';
+    a.innerHTML = '';
+    return;
+  }
+  var h = '';
+  for (var i = 0; i < OLD_USERS.length; i++) {
+    var u = OLD_USERS[i];
+    var already = !!STUDENTS.filter(function(s){ return s.email && s.email.toLowerCase() === String(u.email).toLowerCase(); }).length;
+    h += '<label class="mig-item"><input type="checkbox" class="mig-check" value="' + i + '"' + (already ? '' : ' checked') + '><div><strong>' + esc(u.name) + '</strong> — ' + esc(u.email) + '<br><small style="color:var(--muted)">Formation: ' + esc(u.course || '—') + ' • Statut: ' + esc(u.status || '—') + (already ? ' • <b>déjà dans Supabase</b>' : '') + '</small></div></label>';
+  }
+  l.innerHTML = h;
+  a.innerHTML = '<button class="btn btn-primary" style="margin-top:10px" id="migBtn" onclick="runMigration()"><i class="fas fa-cloud-upload-alt"></i> MIGRER LES COMPTES COCHÉS</button> <button class="btn btn-outline btn-sm" style="margin-top:10px" onclick="clearOldLocal()"><i class="fas fa-trash"></i> Effacer les anciennes données de ce navigateur</button>';
+}
+
+async function runMigration() {
+  if (!isAdminMe() || !sb) return;
+  var checks = document.querySelectorAll('.mig-check');
+  var chosen = [];
+  for (var i = 0; i < checks.length; i++) if (checks[i].checked) chosen.push(OLD_USERS[parseInt(checks[i].value, 10)]);
+  if (!chosen.length) { toast('Migration', 'Aucun compte sélectionné.'); return; }
+
+  var btn = document.getElementById('migBtn');
+  var log = document.getElementById('migLog');
+  log.innerHTML = '';
+  setBusy(btn, true, 'Migration en cours...');
+  var cr = getCreator();
+
+  function addLog(ok, txt) { log.innerHTML += '<div style="color:' + (ok ? '#2E7D32' : '#C62828') + '">' + (ok ? '✓ ' : '✗ ') + txt + '</div>'; }
+
+  try {
+    for (var k = 0; k < chosen.length; k++) {
+      var u = chosen[k];
+      var email = String(u.email).trim().toLowerCase();
+      var label = esc(u.name) + ' (' + esc(email) + ')';
+
+      if (!u.password || String(u.password).length < 6) { addLog(false, label + ' — mot de passe trop court pour Supabase (min. 6). Ajoutez-le manuellement via « Ajouter ».'); continue; }
+
+      var uid = null;
+      var existing = null;
+      for (var s = 0; s < STUDENTS.length; s++) if (STUDENTS[s].email && STUDENTS[s].email.toLowerCase() === email) existing = STUDENTS[s];
+
+      if (existing) {
+        addLog(false, label + ' — déjà présent dans Supabase, ignoré.');
+        continue;
+      }
+
+      var r = await cr.auth.signUp({email: email, password: String(u.password), options: {data: {name: u.name, phone: u.phone || '', course: u.course || ''}}});
+      if (r.error) { addLog(false, label + ' — ' + esc(authMsg(r.error))); continue; }
+      if (!r.data.user || (r.data.user.identities && r.data.user.identities.length === 0)) { addLog(false, label + ' — email déjà utilisé, ignoré.'); continue; }
+      uid = r.data.user.id;
+      try { await cr.auth.signOut({scope: 'local'}); } catch (x) {}
+
+      var code = u.accessCode ? String(u.accessCode).toUpperCase() : null;
+      var codeNote = '';
+      if (code && codeTaken(code, uid)) { codeNote = ' (code « ' + esc(code) + ' » déjà pris: à redéfinir via Modifier)'; code = null; }
+
+      var upd = {
+        name: u.name, course: u.course || null, status: u.status || 'pending', access_code: code
+      };
+      if (u.registeredAt) { var dt = new Date(u.registeredAt); if (!isNaN(dt.getTime())) upd.created_at = dt.toISOString(); }
+      var up = await sb.from('profiles').update(upd).eq('id', uid).select();
+      if (up.error && up.error.code === '23505') {
+        upd.access_code = null;
+        codeNote = ' (code déjà pris: à redéfinir via Modifier)';
+        up = await sb.from('profiles').update(upd).eq('id', uid).select();
+      }
+      if (up.error) { addLog(false, label + ' — compte créé mais profil non mis à jour: ' + esc(up.error.message)); continue; }
+      if (code) STUDENTS.push({id: uid, email: email, accessCode: code});
+
+      var pg = u.progress || {};
+      var pr = await sb.from('student_progress').update({
+        completed: Array.isArray(pg.completed) ? pg.completed : [],
+        last_video: pg.lastVideo || 0,
+        last_activity: pg.lastActivity || null,
+        last_login: u.lastLogin || null
+      }).eq('user_id', uid);
+      if (pr.error) addLog(false, label + ' — progression non copiée: ' + esc(pr.error.message));
+      else addLog(true, label + ' — migré' + codeNote);
+    }
+  } catch (err) {
+    addLog(false, esc(isNetErr(err) ? MSG_NET : 'Erreur: ' + (err.message || err)));
+  } finally {
+    setBusy(btn, false);
+  }
+  await loadStudents();
+  renderAdmin();
+  toast('Migration terminée', 'Voir le détail ci-dessous.');
+}
+
+function clearOldLocal() {
+  if (!confirm('Effacer les anciennes données (fbd_users) de CE navigateur ? Faites-le seulement après avoir vérifié la migration dans Supabase.')) return;
+  try { localStorage.removeItem('fbd_users'); localStorage.removeItem('fbd_session'); } catch (e) {}
+  renderMigration();
+  toast('Nettoyage', 'Anciennes données locales effacées.');
+}
+
+// ============================================
+// AUTHENTIFICATION (Supabase Auth)
+// ============================================
+async function doLogin(e) {
   if (e) e.preventDefault();
+  var aB = document.getElementById('loginAlert');
+  var btn = document.getElementById('loginBtn');
+  if (!sb) { aB.innerHTML = alertBox('alert-err', 'wifi', 'Supabase n\'est pas chargé. Vérifiez votre connexion internet.'); return; }
+
   var email = document.getElementById('loginEmail').value.trim().toLowerCase();
   var password = document.getElementById('loginPassword').value;
   var accessCode = document.getElementById('loginCode').value.trim().toUpperCase();
-  var aB = document.getElementById('loginAlert');
-  
+
   if (!email || !password || !accessCode) {
-    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Tous les champs sont obligatoires.</div>';
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Tous les champs sont obligatoires.');
     return;
   }
-  
-  var users = getDB('users') || [];
-  var u = null;
-  for (var i = 0; i < users.length; i++) {
-    if ((users[i].email && users[i].email.toLowerCase() === email) && users[i].password === password) {
-      u = users[i];
-      break;
+  if (navigator.onLine === false) {
+    aB.innerHTML = alertBox('alert-err', 'wifi', MSG_NET);
+    return;
+  }
+
+  setBusy(btn, true, 'Connexion...');
+  aB.innerHTML = '';
+  try {
+    var r = await sb.auth.signInWithPassword({email: email, password: password});
+    if (r.error) { aB.innerHTML = alertBox('alert-err', 'exclamation-circle', esc(loginMsg(r.error))); return; }
+
+    var uid = r.data.user.id;
+    var d = await fetchMine(uid);
+
+    if (!d.profile) {
+      await sb.auth.signOut();
+      aB.innerHTML = alertBox('alert-err', 'user-slash', 'Ce compte n\'existe plus ou son profil est introuvable. Contactez l\'administration.');
+      return;
     }
+
+    var st = d.profile.status;
+    if (st === 'pending') {
+      await sb.auth.signOut();
+      aB.innerHTML = alertBox('alert-warn', 'hourglass-half', 'Votre inscription est actuellement en attente de validation par l\'administration.');
+      return;
+    }
+    if (st === 'rejected') {
+      await sb.auth.signOut();
+      aB.innerHTML = alertBox('alert-err', 'times-circle', 'Votre inscription n\'a pas été validée. Veuillez contacter l\'administration.');
+      return;
+    }
+    if (st === 'disabled') {
+      await sb.auth.signOut();
+      aB.innerHTML = alertBox('alert-err', 'ban', 'Votre compte a été désactivé. Contactez l\'administration.');
+      return;
+    }
+    if (!d.profile.access_code || d.profile.access_code.toUpperCase() !== accessCode) {
+      await sb.auth.signOut();
+      aB.innerHTML = alertBox('alert-err', 'key', 'Code d\'accès invalide.');
+      return;
+    }
+
+    var now = new Date().toISOString();
+    var lg = await sb.from('student_progress').upsert({user_id: uid, last_login: now}, {onConflict: 'user_id'});
+    if (!lg.error) d.progress.last_login = now;
+
+    ME = {id: uid, email: email, profile: d.profile, progress: d.progress};
+
+    closeModal();
+    toast('Bienvenue ' + String(d.profile.name || '').split(' ')[0] + ' !', 'Connexion réussie');
+    setTimeout(function() {
+      if (ME && ME.profile.role === 'admin') go('admin');
+      else go('dashboard');
+    }, 400);
+  } catch (err) {
+    console.error(err);
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', esc(isNetErr(err) ? MSG_NET : 'Erreur inattendue: ' + (err.message || err)));
+    try { await sb.auth.signOut(); } catch (x) {}
+  } finally {
+    setBusy(btn, false);
   }
-  
-  if (!u) {
-    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Identifiants incorrects. Vérifiez votre email et votre mot de passe.</div>';
-    return;
-  }
-  
-  if (u.accessCode.toUpperCase() !== accessCode) {
-    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Code d\'accès invalide.</div>';
-    return;
-  }
-  
-  if (u.status === 'pending') {
-    if (aB) aB.innerHTML = '<div class="alert alert-warn"><i class="fas fa-hourglass-half"></i> Votre inscription est actuellement en attente de validation par l\'administration.</div>';
-    return;
-  }
-  if (u.status === 'rejected') {
-    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-times-circle"></i> Votre inscription n\'a pas été validée. Veuillez contacter l\'administration.</div>';
-    return;
-  }
-  if (u.status === 'disabled') {
-    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-ban"></i> Votre compte a été désactivé. Contactez l\'administration.</div>';
-    return;
-  }
-  
-  u.lastLogin = new Date().toISOString();
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === u.id) { users[i] = u; break; }
-  }
-  setDB('users', users);
-  setSession({userId: u.id});
-  
-  closeModal();
-  toast('Bienvenue ' + u.name.split(' ')[0] + ' !', 'Connexion réussie');
-  setTimeout(function() {
-    if (u.isAdmin) go('admin');
-    else go('dashboard');
-  }, 500);
 }
 
-function doRegister(e) {
+async function doRegister(e) {
   if (e) e.preventDefault();
+  var aB = document.getElementById('regAlert');
+  var btn = document.getElementById('regBtn');
+  if (!sb) { aB.innerHTML = alertBox('alert-err', 'wifi', 'Supabase n\'est pas chargé. Vérifiez votre connexion internet.'); return; }
+
   var name = document.getElementById('regName').value.trim();
   var email = document.getElementById('regEmail').value.trim().toLowerCase();
   var phone = document.getElementById('regPhone').value.trim();
   var password = document.getElementById('regPassword').value;
   var course = document.getElementById('regCourse').value;
-  var aB = document.getElementById('regAlert');
-  
+
   if (!name || !email || !phone || !password || !course) {
-    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Tous les champs sont obligatoires.</div>';
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Tous les champs sont obligatoires.');
     return;
   }
-  
-  var users = getDB('users') || [];
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].email && users[i].email.toLowerCase() === email) {
-      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Cet email est déjà utilisé.</div>';
+  if (password.length < 6) {
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Le mot de passe doit contenir au moins 6 caractères.');
+    return;
+  }
+  if (navigator.onLine === false) {
+    aB.innerHTML = alertBox('alert-err', 'wifi', MSG_NET);
+    return;
+  }
+
+  setBusy(btn, true, 'Envoi...');
+  aB.innerHTML = '';
+  try {
+    var r = await sb.auth.signUp({email: email, password: password, options: {data: {name: name, phone: phone, course: course}}});
+    if (r.error) { aB.innerHTML = alertBox('alert-err', 'exclamation-circle', esc(authMsg(r.error))); return; }
+    if (!r.data.user || (r.data.user.identities && r.data.user.identities.length === 0)) {
+      aB.innerHTML = alertBox('alert-err', 'exclamation-circle', 'Cet email est déjà utilisé. Connectez-vous avec votre compte existant.');
       return;
     }
+    // Compte en attente: pas de session ouverte avant validation
+    if (r.data.session) { try { await sb.auth.signOut(); } catch (x) {} }
+
+    var c = getCourse(course);
+    var cn = c ? c.t : '';
+    var p = c ? c.p : 0;
+    var waMsg = "🎓 NOUVELLE INSCRIPTION\n\n👤 Nom: " + name + "\n📧 Email: " + email + "\n📱 WhatsApp: " + phone + "\n📚 Formation: " + cn + "\n💰 Montant: " + fmtPrice(p) + " Gourdes\n\n⏳ En attente de validation.";
+
+    aB.innerHTML = alertBox('alert-ok', 'check-circle', 'Inscription soumise avec succès !<br><small style="margin-top:6px;display:block">Votre compte est <strong>en attente de validation</strong>. Envoyez votre inscription à l\'administration par WhatsApp pour accélérer la validation.</small><a href="' + esc(waL(waMsg)) + '" target="_blank" rel="noopener" class="btn btn-wa btn-sm" style="margin-top:10px;display:inline-flex;width:auto"><i class="fab fa-whatsapp"></i> ENVOYER SUR WHATSAPP</a>');
+    document.getElementById('regPassword').value = '';
+    toast('Inscription envoyée !', 'En attente de validation.');
+  } catch (err) {
+    console.error(err);
+    aB.innerHTML = alertBox('alert-err', 'exclamation-circle', esc(isNetErr(err) ? MSG_NET : 'Erreur inattendue: ' + (err.message || err)));
+  } finally {
+    setBusy(btn, false);
   }
-  
-  var newStudent = {
-    id: generateUserId(),
-    name: name,
-    email: email,
-    phone: phone,
-    password: password,
-    accessCode: null,
-    registeredAt: new Date().toISOString().split('T')[0],
-    course: course,
-    progress: {completed: [], lastVideo: 0, lastActivity: null},
-    status: 'pending',
-    lastLogin: null
-  };
-  
-  users.push(newStudent);
-  setDB('users', users);
-  
-  var c = getCourse(course);
-  var cn = c ? c.t : '';
-  var p = c ? c.p : 0;
-  var waMsg = "🎓 NOUVELLE INSCRIPTION\n\n👤 Nom: " + name + "\n📧 Email: " + email + "\n📱 WhatsApp: " + phone + "\n📚 Formation: " + cn + "\n💰 Montant: " + fmtPrice(p) + " Gourdes\n\n⏳ En attente de validation.";
-  try { window.open(waL(waMsg), '_blank'); } catch (e) {}
-  
-  if (aB) aB.innerHTML = '<div class="alert alert-ok"><i class="fas fa-check-circle"></i> Inscription soumise avec succès !<br><small style="margin-top:6px;display:block">Votre compte est <strong>en attente de validation</strong>. L\'administration vous contactera bientôt.</small></div>';
-  setTimeout(function() { closeModal(); toast('Inscription envoyée !', 'En attente de validation.'); }, 3000);
 }
 
-function logout() {
-  clearSession();
+async function logout() {
+  try { if (sb) await sb.auth.signOut(); } catch (e) { console.error(e); }
+  ME = null;
+  STUDENTS = [];
+  currentCourse = null;
   go('home');
   toast('Déconnexion', 'À bientôt !');
 }
@@ -1420,7 +1566,7 @@ function openModal(tp, d) {
   var ov = document.getElementById('modalOverlay');
   var ct = document.getElementById('modalContent');
   var h = '';
-  
+
   if (tp === 'register') {
     var op = '';
     for (var i = 0; i < COURSES.length; i++) {
@@ -1438,24 +1584,24 @@ function openModal(tp, d) {
     h += '<div class="form-group"><label>Numéro WhatsApp *</label><input type="tel" id="regPhone" placeholder="+509 ..." required></div>';
     h += '<div class="form-group"><label>Mot de passe *</label><input type="password" id="regPassword" required minlength="6"></div>';
     h += '<div class="form-group"><label>Formation choisie *</label><select id="regCourse" required><option value="">— Sélectionnez —</option>' + op + '</select></div>';
-    h += '<button type="submit" class="btn btn-primary btn-lg">SOUMETTRE L\'INSCRIPTION</button>';
+    h += '<button type="submit" class="btn btn-primary btn-lg" id="regBtn">SOUMETTRE L\'INSCRIPTION</button>';
     h += '</form>';
     h += '<div class="alert alert-info" style="margin-top:16px"><i class="fas fa-info-circle"></i><div>Après soumission, votre compte sera <strong>en attente de validation</strong>. L\'administration vous contactera pour finaliser.</div></div>';
     h += '<div style="text-align:center;margin-top:18px;font-size:13.5px;color:var(--muted)">Déjà inscrit ? <a onclick="openModal(\'login\')" style="color:var(--gold-2);font-weight:600;cursor:pointer">Se connecter</a></div>';
   } else if (tp === 'login') {
     h = '<button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>';
     h += '<h2>CONNEXION</h2>';
-    h += '<p class="sub">Accédez à votre espace.</p>';
+    h += '<p class="sub">Accédez à votre espace depuis n\'importe quel appareil.</p>';
     h += '<div id="loginAlert"></div>';
     h += '<form onsubmit="doLogin(event)">';
-    h += '<div class="form-group"><label>Email *</label><input type="email" id="loginEmail" required placeholder="email@exemple.com"></div>';
-    h += '<div class="form-group"><label>Mot de passe *</label><input type="password" id="loginPassword" required></div>';
-    h += '<div class="form-group"><label>Code d\'accès *</label><input type="text" id="loginCode" required placeholder="0102030405" style="font-family:monospace;font-weight:700;letter-spacing:2px"></div>';
-    h += '<button type="submit" class="btn btn-primary btn-lg">SE CONNECTER</button>';
+    h += '<div class="form-group"><label>Email *</label><input type="email" id="loginEmail" required placeholder="email@exemple.com" autocomplete="email"></div>';
+    h += '<div class="form-group"><label>Mot de passe *</label><input type="password" id="loginPassword" required autocomplete="current-password"></div>';
+    h += '<div class="form-group"><label>Code d\'accès *</label><input type="text" id="loginCode" required placeholder="0102030405" style="font-family:monospace;font-weight:700;letter-spacing:2px" autocomplete="off"></div>';
+    h += '<button type="submit" class="btn btn-primary btn-lg" id="loginBtn">SE CONNECTER</button>';
     h += '</form>';
     h += '<div style="text-align:center;margin-top:18px;font-size:13.5px;color:var(--muted)">Pas de compte ? <a onclick="openModal(\'register\')" style="color:var(--gold-2);font-weight:600;cursor:pointer">S\'inscrire</a></div>';
   }
-  
+
   ct.innerHTML = h;
   ov.classList.add('open');
 }
@@ -1465,7 +1611,7 @@ function closeModal() {
 }
 
 // ============================================
-// UTILITAIRES
+// UTILITAIRES UI
 // ============================================
 function copyCode(id) {
   var el = document.getElementById(id);
@@ -1515,28 +1661,45 @@ window.openCourse = openCourse;
 window.openModule = openModule;
 window.playCurrentVideo = playCurrentVideo;
 window.markModuleDone = markModuleDone;
+window.runMigration = runMigration;
+window.clearOldLocal = clearOldLocal;
 
 // ============================================
 // INITIALISATION
 // ============================================
+async function restoreSession() {
+  if (!sb) return;
+  try {
+    var s = await sb.auth.getSession();
+    if (!s.data || !s.data.session) return;
+    var uid = s.data.session.user.id;
+    var d = await fetchMine(uid);
+    if (!d.profile || d.profile.status !== 'active') {
+      await sb.auth.signOut();
+      return;
+    }
+    ME = {id: uid, email: s.data.session.user.email, profile: d.profile, progress: d.progress};
+    if (ME.profile.role === 'admin') go('admin');
+    else go('dashboard');
+  } catch (e) {
+    console.error('restoreSession error:', e);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   try {
-    initDB();
     var ws = document.getElementById('waSupportLink');
     if (ws) ws.href = waL("Bonjour " + BN + " !");
     renderCatalogue();
-    
-    var session = getSession();
-    if (session) {
-      var users = getDB('users') || [];
-      var u = null;
-      for (var i = 0; i < users.length; i++) {
-        if (users[i].id === session.userId) { u = users[i]; break; }
-      }
-      if (u) {
-        if (u.isAdmin) go('admin');
-        else go('dashboard');
-      }
+    restoreSession();
+
+    if (sb) {
+      // Si la session est fermée ailleurs (autre onglet, expiration), on revient à l'accueil
+      sb.auth.onAuthStateChange(function(ev) {
+        if (ev === 'SIGNED_OUT' && ME) {
+          setTimeout(function() { ME = null; STUDENTS = []; go('home'); }, 0);
+        }
+      });
     }
   } catch (e) {
     console.error('Init error:', e);
