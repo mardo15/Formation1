@@ -451,10 +451,13 @@ async function hashPassword(password) {
     const data = encoder.encode(password + '_fbd_salt_2026');
     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    return hashArray
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
   } catch (e) {
     console.error('Hash error:', e);
-    return btoa(password);
+    throw new Error('Impossible de sécuriser le mot de passe.');
   }
 }
 
