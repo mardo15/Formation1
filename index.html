@@ -1034,41 +1034,64 @@ async function doLogin(e) {
 
 async function doAdminLogin(e) {
   if (e) e.preventDefault();
-  
+
   if (!supabase) {
     toast('Erreur', 'Base de données non configurée');
     return;
   }
-  
+
   const email = document.getElementById('adminLoginEmail').value.trim().toLowerCase();
   const password = document.getElementById('adminLoginPassword').value;
   const aB = document.getElementById('adminLoginAlert');
-  
+
+  if (!email || !password) {
+    if (aB) {
+      aB.innerHTML = '<div class="alert alert-err">Antre imel ak modpas ou.</div>';
+    }
+    return;
+  }
+
   try {
-    const { data: admins } = await supabase.from('admins').select('*').eq('email', email).limit(1);
-    
-    if (!admins || admins.length === 0) {
-      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Admin non trouvé.</div>';
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    if (error || !data.user) {
+      if (aB) {
+        aB.innerHTML = '<div class="alert alert-err">Imel oswa modpas la pa kòrèk.</div>';
+      }
       return;
     }
-    
-    const admin = admins[0];
-    const valid = await verifyPassword(password, admin.password_hash);
-    
-    if (!valid) {
-      if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Mot de passe incorrect.</div>';
+
+    if (data.user.email !== 'admin@fbd.com') {
+      await supabase.auth.signOut();
+
+      if (aB) {
+        aB.innerHTML = '<div class="alert alert-err">Kont sa a pa gen aksè administratè.</div>';
+      }
       return;
     }
-    
-    setSession({ adminId: admin.id, isAdmin: true });
+
+    setSession({
+      adminId: data.user.id,
+      isAdmin: true
+    });
+
     closeModal();
     toast('Bienvenue Admin !', 'Connexion réussie');
-    setTimeout(function() { go('admin'); }, 500);
+    setTimeout(function() {
+      go('admin');
+    }, 500);
+
   } catch (err) {
     console.error('Admin login error:', err);
-    if (aB) aB.innerHTML = '<div class="alert alert-err"><i class="fas fa-exclamation-circle"></i> Erreur: ' + err.message + '</div>';
+
+    if (aB) {
+      aB.innerHTML = '<div class="alert alert-err">Erè koneksyon. Eseye ankò.</div>';
+    }
   }
-}
+  }
 
 function logout() {
   clearSession();
